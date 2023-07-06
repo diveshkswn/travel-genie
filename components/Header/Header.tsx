@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { memo } from "react";
 import { HeaderSection } from "./Header.styles";
 import { HeaderProps } from "./Header.types";

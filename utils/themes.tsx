@@ -1,6 +1,28 @@
-export const mainTheme = {
+import { createGlobalStyle } from "styled-components";
+
+export const lightTheme = {
+  body: '#889c9e',
+  border: '#5f767b',
+  background: '#5f767b',
   colors: {
-    primaryBgColor: "rgb(10, 25, 41)",
-    primaryFgColor: "#e0e3e7",
+    primaryColor: "#ffffff",
+    secondaryColor: "#38546a",
   },
-};
+}
+
+export const darkTheme = {
+  body: '#022a54',
+  border: '#021c38',
+  background: '#021c38',
+  colors: {
+    primaryColor: "#ffffff",
+    secondaryColor: "#517d9e",
+  },
+}
+
+export const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.colors.primaryColor};
+  }
+`
