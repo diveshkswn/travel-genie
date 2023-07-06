@@ -2,7 +2,6 @@ import StyledComponentsRegistry from "@/utils/Registery";
 import "./globals.css";
 // import "./globals.scss";
 import { Inter } from "next/font/google";
-import { HeaderComponent } from "@/components/Header";
 import { PageLayout } from "@/components/PageLayout/";
 
 const inter = Inter({ subsets: ["latin"] });
