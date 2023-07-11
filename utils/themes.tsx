@@ -6,7 +6,7 @@ export const lightTheme = {
   background: '#5f767b',
   colors: {
     primaryColor: "#ffffff",
-    secondaryColor: "#38546a",
+    secondaryColor: "#d2d5d8",
   },
 }
 
@@ -24,5 +24,18 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.colors.primaryColor};
+
+    .secondary {
+      background: ${({ theme }) => theme.background} !important;
+      color: ${({ theme }) => theme.colors.secondaryColor} !important;
+    }
+
+    .secondary-bg {
+      background: ${({ theme }) => theme.background} !important;
+    }
+    
+    .secondary-fg {
+      color: ${({ theme }) => theme.colors.secondaryColor} !important;
+    }
   }
 `
