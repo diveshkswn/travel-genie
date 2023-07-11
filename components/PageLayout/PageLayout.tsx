@@ -9,6 +9,7 @@ function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
+      <div id="fb-root"></div>
       <HeaderComponent title="Main Header" />
       <main className="MainContainer">{children}</main>
       <section className="footer">
