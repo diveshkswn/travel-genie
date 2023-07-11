@@ -29,7 +29,7 @@ export function FacebookAuth() {
     <FacebookAuthContainer $minHeight={300}>
       {isMounted && (
         <>
-          {" "}
+          {""}
           <div id="fb-root"></div>
           <div
             className="fb-login-button"
