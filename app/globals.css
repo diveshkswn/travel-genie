@@ -107,5 +107,10 @@ a {
 }
 
 .MainContainer {
-  min-height: 80vh;
+  min-height: max(80vh, 500px);
+}
+
+.AuthContainer {
+  margin: 0 auto;
+  width: min(90vw, 960px);
 }
