@@ -12,11 +12,11 @@ export function Discover(props: DiscoverProps) {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <Search />
         <span className="user-icon d-flex justify-content-center align-items-center">
-          <i className="bi bi-person-fill"/>
+          <i className="bi bi-person-fill" />
         </span>
       </div>
       <h1>{props.title}</h1>
-      <Tabs tabList={['Popular', 'Recent']}/>
+      <Tabs tabList={["Popular", "Recent"]} />
     </StyledSection>
   );
 }

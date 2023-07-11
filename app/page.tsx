@@ -1,7 +1,6 @@
-import Discover from '@/screens/Discover/Discover'
+//import Discover from '@/screens/Discover/Discover'
+import Home from "@/screens/Home/Home";
 
-export default function Home() {
-  return (
-    <Discover title="Discover"/>
-  )
+export default function HomeP() {
+  return <Home />;
 }
