@@ -6,11 +6,13 @@ export const config = {
   matcher: ["/", "/authenticate"],
 };
 
+const authRoutes = ["/"];
+
 export function middleware(request: NextRequest) {
   let url = request.nextUrl.pathname;
   const tgAuth = request.cookies.get("tgAuth")?.value;
-  console.log("tgAuth", tgAuth, url);
-  if (url === "/") {
+  //If route is authenticated route.
+  if (authRoutes.includes(url)) {
     if (tgAuth) {
       NextResponse.next();
     } else {
