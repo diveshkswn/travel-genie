@@ -1,5 +1,6 @@
 import StyledComponentsRegistry from "@/utils/Registery";
 import "./globals.css";
+import "bootstrap/dist/css/bootstrap.css";
 // import "./globals.scss";
 import { Inter } from "next/font/google";
 import { PageLayout } from "@/components/PageLayout/";
@@ -18,6 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+        />
+      </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
           <PageLayout>{children}</PageLayout>
