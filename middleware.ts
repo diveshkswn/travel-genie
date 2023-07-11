@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // Limit the middleware to paths starting with `/api/`
+
 export const config = {
   matcher: ["/", "/authenticate"],
 };
