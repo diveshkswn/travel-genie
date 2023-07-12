@@ -1,7 +1,6 @@
 import { AuthContainer } from "@/components/AuthContainer";
-import { FacebookAuth } from "@/components/FacebookAuth";
 
-export default function Authentication() {
+export default function AuthenticatePage() {
   return (
     <div className="AuthContainer">
       <AuthContainer />

@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 // import "./globals.scss";
 import { Inter } from "next/font/google";
 import { PageLayout } from "@/components/PageLayout/";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
