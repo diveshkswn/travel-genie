@@ -3,22 +3,36 @@
 import { memo, useEffect } from "react";
 import { CarouselSection } from "./ Carousel.styles";
 import { CarouselProps } from "./Carousel.types";
-import Glide from "@glidejs/glide";
+// import Glide from "@glidejs/glide";
 import "./style.scss";
+import { handleLogout } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
 export function Carousel(props: CarouselProps) {
-  useEffect(() => {
-    new Glide(".glide", {
-      type: "carousel",
-      autoplay: 5000,
-      hoverpause: true,
-      gap: 0,
-      startAt: 0,
-    }).mount();
-  }, []);
+  const router = useRouter();
+  // useEffect(() => {
+  //   new Glide(".glide", {
+  //     type: "carousel",
+  //     autoplay: 5000,
+  //     hoverpause: true,
+  //     gap: 0,
+  //     startAt: 0,
+  //   }).mount();
+  // }, []);
 
   return (
     <CarouselSection className="CarouselContainer">
+      <button
+        onClick={() => {
+          handleLogout({
+            callbackFn: () => {
+              router.refresh();
+            },
+          });
+        }}
+      >
+        Logout
+      </button>
       <div className="glide">
         <div className="glide__bullets" data-glide-el="controls[nav]">
           <button className="glide__bullet" data-glide-dir="=0"></button>

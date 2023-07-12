@@ -4,10 +4,10 @@ import type { NextRequest } from "next/server";
 // Limit the middleware to paths starting with `/api/`
 
 export const config = {
-  matcher: ["/", "/authenticate"],
+  matcher: ["/", "/authenticate", "/discover"],
 };
 
-const authRoutes = ["/"];
+const authRoutes = ["/", "/discover"];
 
 export function middleware(request: NextRequest) {
   let url = request.nextUrl.pathname;
