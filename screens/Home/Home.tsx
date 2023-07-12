@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { HomeProps } from "./index.types";
 import { StyledSection } from "./index.styles";
-import Carousel from "@/components/Carousel/Carousel";
+import { Carousel } from "@/components/Carousel/Carousel";
 
 export function Home(props: HomeProps) {
   return (
