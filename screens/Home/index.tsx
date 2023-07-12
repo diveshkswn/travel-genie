@@ -1,4 +1,4 @@
 import dynamic from "next/dynamic";
-import { DiscoverProps } from "./index.types";
+import { HomeProps } from "./index.types";
 
-export const DiscoverComponent = dynamic<DiscoverProps>(() => import("./Discover"));
+export const HomeComponent = dynamic<HomeProps>(() => import("./Home"));

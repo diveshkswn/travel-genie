@@ -26,7 +26,7 @@ export function Carousel(props: CarouselProps) {
         onClick={() => {
           handleLogout({
             callbackFn: () => {
-              router.push("/authenticate");
+              router.refresh();
             },
           });
         }}
