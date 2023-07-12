@@ -1,4 +1,7 @@
+import { Router } from "next/router";
+
 export const canUseDOM = !!(typeof window !== "undefined" && window.document);
+const { NEXT_PUBLIC_AUTH_TIMEOUT } = process.env;
 
 export function getCookie(name: string) {
   if (!canUseDOM) {
@@ -38,3 +41,32 @@ export function setCookie(c_name: string, value: any, minutes?: number) {
   console.log("c_name", c_name);
   console.log("c_value", c_value);
 }
+
+function deleteCookie(cookieName: string) {
+  document.cookie =
+    cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+export const handleLogin = ({
+  name,
+  email,
+  callbackFn,
+}: {
+  name: string;
+  email: string;
+  callbackFn: () => any;
+}) => {
+  let authCookie = { name, email };
+
+  setCookie(
+    "tgAuth",
+    JSON.stringify(authCookie),
+    Number(NEXT_PUBLIC_AUTH_TIMEOUT || "5")
+  );
+  callbackFn?.();
+};
+
+export const handleLogout = ({ callbackFn }: { callbackFn: () => any }) => {
+  deleteCookie("tgAuth");
+  callbackFn?.();
+};
