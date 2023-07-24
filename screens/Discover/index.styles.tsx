@@ -11,5 +11,9 @@ export const StyledSection = styled("section")`
     i {
       font-size: 24px;
     }
+
+  }
+  .card-container {
+    overflow: scroll;
   }
 `;
