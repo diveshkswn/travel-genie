@@ -14,6 +14,6 @@ export const StyledSection = styled("section")`
 
   }
   .card-container {
-    overflow: scroll;
+    overflow-x: scroll;
   }
 `;
