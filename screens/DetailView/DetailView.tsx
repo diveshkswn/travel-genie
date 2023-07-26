@@ -6,7 +6,7 @@ import { DetailViewProps } from "./index.types";
 import { StyledSection } from "./index.styles";
 
 const DetailView = (props: DetailViewProps) => {
-  const { city, country, url, review } = props;
+  const { city, url, review } = props;
 
   return (
     <StyledSection>
