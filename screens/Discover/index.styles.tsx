@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 
 export const StyledSection = styled("section")`
-  padding: 32px;
   .user-icon {
     border-radius: 50%;
     border: 1px solid;
@@ -12,6 +11,9 @@ export const StyledSection = styled("section")`
       font-size: 24px;
     }
 
+  }
+  .content_container {
+    padding: 0 0 24px 24px;
   }
   .card-container {
     overflow-x: scroll;
