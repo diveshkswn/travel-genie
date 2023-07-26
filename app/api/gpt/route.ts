@@ -66,5 +66,5 @@ export async function POST(request: Request) {
       };
     }
   }
-  return data;
+  return NextResponse.json(data);
 }
