@@ -70,3 +70,19 @@ export const handleLogout = ({ callbackFn }: { callbackFn: () => any }) => {
   deleteCookie("tgAuth");
   callbackFn?.();
 };
+
+export const getData = async (message: string) => {
+  const reqBody = { message };
+  const res = await fetch("/api/gpt", {
+    method: "POST",
+    body: JSON.stringify(reqBody),
+  });
+
+  const parsedRes = await res.json();
+
+  const content = parsedRes?.data?.messages?.[2]?.content || "";
+  const startIndex = content.indexOf("[");
+  const endIndex = content.indexOf("]", startIndex);
+
+  return JSON.parse(content.substring(startIndex, endIndex + 1));
+};
