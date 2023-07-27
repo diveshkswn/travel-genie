@@ -9,9 +9,7 @@ export function AuthContainer() {
     <div className="AuthContainer">
       <AuthContainerDiv $minHeight={300}>
         <div className="main-text">
-          <div className="main-text-title">
-          Let's go,
-          </div>
+          <div className="main-text-title">{"Let's go,"}</div>
           <div className="main-text-description">
             Traveling around the world.
           </div>
