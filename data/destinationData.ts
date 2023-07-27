@@ -14,6 +14,7 @@ export const destinations = [
         activtityImgUrl:
           "https://cdn.thecollector.com/wp-content/uploads/2022/04/central-park-aerial-view-greensward-plan.jpg?width=1400&quality=70",
         price: 50,
+        activityType: "Food and drink experiences",
       },
       {
         id: 2,
@@ -22,6 +23,7 @@ export const destinations = [
         activtityImgUrl:
           "https://media.istockphoto.com/id/1256618106/photo/leather-cricket-ball-resting-on-a-cricket-bat-placed-on-green-grass-cricket-ground-pitch.jpg?s=2048x2048&w=is&k=20&c=LcPWOW80rEbK2p3lv1x48S7zocbMJIXgtbptJFP178s=",
         price: 150,
+        activityType: "Cultural experiences",
       },
     ],
     cityRestaurant: [
