@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   try {
     requestBody = await request.json();
   } catch (e) {
-    return NextResponse.json({ message: "payload incorrect" });
+    return NextResponse.json({ message: "payload incorrect." });
   }
 
   console.log("requestBody", requestBody);
