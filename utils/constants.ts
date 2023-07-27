@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const constants = {
   GPT_INITIAL_PROMPT:
     "You are a helpful AI assistant. If you do not know the answer to a question, respond by saying  'I do not know the answer to your question.'. Respond in markdown format when possible.code parts should start with ```langauge and end with ``` . if asked for uml generate mermaid code and start the mermaid code with ```mermaid .",
@@ -51,4 +52,6 @@ export const constants = {
     },
     // Add more activities here as needed
   ],
+  POPULAR_DESTINATION_PROMPT: "Please provide me 5 popular destinations to visit all over the world in the below JSON format [{city, country, review}]",
+  RECOMMENDED_DESTINATION_PROMPT: "Please provide me 5 recommended destinations to visit all over the world that is famous for {selectedActivities} in the below JSON format [{city, country, review}]"
 };

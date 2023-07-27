@@ -1,11 +1,22 @@
 "use client";
 
-import React, { useState } from 'react';
-import { ActivityItem } from './ActivityItem/ActivityItem';
-import { StyledContainer } from './index.styles';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { getData } from "@/utils/helpers";
+import { ActivityItem } from "./ActivityItem/ActivityItem";
+import { StyledContainer } from "./index.styles";
+import { constants } from "@/utils/constants";
 
 const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
+  const router = useRouter();
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  const { POPULAR_DESTINATION_PROMPT, RECOMMENDED_DESTINATION_PROMPT } = constants;
+
+  useEffect(() => {
+    const data: string[] = JSON.parse(sessionStorage.getItem("selectedActivities") || "[]");
+    setSelectedActivities(data);
+  },[])
 
   const handleActivityClick = (activityName: string) => {
     if (selectedActivities.includes(activityName)) {
@@ -15,8 +26,17 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
     }
   };
 
-  const handleSaveClick = () => {
-    sessionStorage.setItem('selectedActivities', JSON.stringify(selectedActivities));
+  const handleSaveClick = async () => {
+    const prompt = RECOMMENDED_DESTINATION_PROMPT.replace("{selectedActivities}",selectedActivities.join(""));
+    
+    const recommendedDestination = await getData(prompt);
+    const popularDestination = await getData(POPULAR_DESTINATION_PROMPT);
+
+    sessionStorage.setItem("selectedActivities",JSON.stringify(selectedActivities));
+    sessionStorage.setItem("popularDestination",JSON.stringify(popularDestination));
+    sessionStorage.setItem("recommendedDestination",JSON.stringify(recommendedDestination));
+    
+    router.push('discover');
   };
 
   return (

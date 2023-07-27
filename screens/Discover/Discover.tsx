@@ -2,11 +2,11 @@
 "use client";
 
 import { memo, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Search } from "@/components/Search/Search";
 import Tabs from "@/components/Tabs/Tabs";
 import Card from "@/components/Card/Card";
-import { getData } from "@/utils/helpers";
 import { constants } from "@/utils/constants";
 
 import { StyledSection } from "./index.styles";
@@ -15,6 +15,7 @@ import { DestinationProps, DiscoverProps } from "./index.types";
 const { TAB_LIST } = constants;
 
 export function Discover(props: DiscoverProps) {
+  const router = useRouter();
   const [selectedTab, setSelectedTab] = useState(TAB_LIST[0]);
   const [popularDestination, setPopularDestination] = useState<
     DestinationProps[]
@@ -25,29 +26,18 @@ export function Discover(props: DiscoverProps) {
   const [recentData, setRecentData] = useState<DestinationProps[]>([]);
 
   useEffect(() => {
-    const recents: DestinationProps[] = JSON.parse(
-      sessionStorage.getItem("recents") || "[]"
-    );
+    const recents: DestinationProps[] = JSON.parse(sessionStorage.getItem("recents") || "[]");
     setRecentData(recents);
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const data = await getData(
-        "Please provide me 5 popular destinations to visit all over the world in the below JSON format [{city, country, review}]"
-      );
-      setPopularDestination(data);
-    })();
+    const data: DestinationProps[] = JSON.parse(sessionStorage.getItem("popularDestination") || "[]");
+    setPopularDestination(data);
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const selectedFilters = ["Adventure sports", "Sightseeing", "Nightlife"];
-      const data = await getData(
-        `Please provide me 5 recommended destinations to visit all over the world that is famous for ${selectedFilters?.join()} in the below JSON format [{city, country, review}]`
-      );
-      setRecommenderDestination(data);
-    })();
+    const data: DestinationProps[] = JSON.parse(sessionStorage.getItem("recommendedDestination") || "[]");
+    setRecommenderDestination(data);
   }, []);
 
   return (
@@ -55,7 +45,7 @@ export function Discover(props: DiscoverProps) {
       <div className="px-4 pt-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h1 className="m-0">{props.title}</h1>
-          <span className="user-icon d-flex justify-content-center align-items-center">
+          <span className="user-icon d-flex justify-content-center align-items-center" onClick={() => router.push('activitySelector')}>
             <i className="bi bi-person-fill" />
           </span>
         </div>
