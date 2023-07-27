@@ -1,6 +1,6 @@
-export const destinations = [
+ const destinations = [
   {
-    id: 1,
+    id: "new_york_123",
     cityName: "New York",
     cityDesc: "The city that never sleeps",
     cityCountry: "United States",
@@ -36,7 +36,7 @@ export const destinations = [
     ],
   },
   {
-    id: 2,
+    id: "paris_123",
     cityName: "Paris",
     cityDesc: "The city of love",
     cityCountry: "France",
@@ -72,7 +72,7 @@ export const destinations = [
     ],
   },
   {
-    id: 3,
+    id: "tokyo_123",
     cityName: "Tokyo",
     cityDesc: "A blend of tradition and modernity",
     cityCountry: "Japan",
@@ -108,7 +108,7 @@ export const destinations = [
     ],
   },
   {
-    id: 4,
+    id: "sydney_123",
     cityName: "Sydney",
     cityDesc: "Harbor city with stunning views",
     cityCountry: "Australia",
@@ -144,7 +144,7 @@ export const destinations = [
     ],
   },
   {
-    id: 5,
+    id: "london_123",
     cityName: "London",
     cityDesc: "Rich history and cultural diversity",
     cityCountry: "United Kingdom",
@@ -180,3 +180,5 @@ export const destinations = [
     ],
   },
 ];
+
+module.exports={destinations}
