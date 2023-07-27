@@ -4,6 +4,7 @@ import { memo, useEffect, useState } from "react";
 
 import { DetailViewProps } from "./index.types";
 import { StyledSection } from "./index.styles";
+import Button from "@/components/Button/Button";
 
 const DetailView = () => {
   const [detail, setDetail] = useState<DetailViewProps>();
@@ -13,21 +14,21 @@ const DetailView = () => {
     const selectedIndex: number = JSON.parse(sessionStorage.getItem("selectedIndex") || '0');
     setDetail(recents[selectedIndex]);
   },[])
-  
-  const { city, url, review } = detail || {};
+
+  const { placeName, url, overview } = detail || {};
 
   return (
     <StyledSection>
       <div className="img-container">
-        <img src={url} alt={city} />
-        <h2 className="title">{city}</h2>
+        <img src={url} alt={placeName} />
+        <h2 className="title">{placeName}</h2>
       </div>
       <div className="content-container">
         <span>Description</span>
-        <p className="secondary-fg pt-3">{review}</p>
+        <p className="secondary-fg pt-3">{overview}</p>
       </div>
       <div className="d-flex justify-content-center align-items-center">
-        <button className="secondary">Continue</button>
+        <Button text="Continue" handleClick={() => {}} className="btn"/>
       </div>
     </StyledSection>
   );

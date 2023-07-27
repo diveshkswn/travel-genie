@@ -7,9 +7,12 @@ import { getData } from "@/utils/helpers";
 import { ActivityItem } from "./ActivityItem/ActivityItem";
 import { StyledContainer } from "./index.styles";
 import { constants } from "@/utils/constants";
+import Loader from "@/components/Loader/Loader";
+import Button from "@/components/Button/Button";
 
 const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const { POPULAR_DESTINATION_PROMPT, RECOMMENDED_DESTINATION_PROMPT } = constants;
 
@@ -27,24 +30,32 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   };
 
   const handleSaveClick = async () => {
+    setIsLoading(true)
     const prompt = RECOMMENDED_DESTINATION_PROMPT.replace("{selectedActivities}",selectedActivities.join(""));
     
     const recommendedDestination = await getData(prompt);
     const popularDestination = await getData(POPULAR_DESTINATION_PROMPT);
 
     sessionStorage.setItem("selectedActivities",JSON.stringify(selectedActivities));
-    sessionStorage.setItem("popularDestination",JSON.stringify(popularDestination));
-    sessionStorage.setItem("recommendedDestination",JSON.stringify(recommendedDestination));
+    if(popularDestination.length) {
+      sessionStorage.setItem("popularDestination",JSON.stringify(popularDestination));
+    };
+    if(recommendedDestination.length) {
+      sessionStorage.setItem("recommendedDestination",JSON.stringify(recommendedDestination));
+    };
     
+    setIsLoading(false);
     router.push('discover');
   };
 
   return (
     <div className='activity-container' style={{
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      overflow: isLoading ? "hidden" : "auto",
+      height: '100vh' 
     }}>
-      <div className='secondary-bg' style={{
+      <div style={{
         padding: '20px',
         fontFamily: 'fantasy',
         textAlign: 'center'
@@ -62,21 +73,8 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
           />
         ))}
       </StyledContainer>
-      <button
-        onClick={handleSaveClick}
-        style={{
-          backgroundColor: '#226dc4',
-          color: 'white',
-          padding: '10px',
-          border: 'none',
-          borderRadius: '5px',
-          margin: '50px auto',
-          cursor: 'pointer',
-          fontSize: '24px'
-        }}
-      >
-        Save
-      </button>
+      <Button text="Save" handleClick={handleSaveClick} className="save-btn"/>
+      {isLoading && <Loader/>}
     </div>
   );
 };
