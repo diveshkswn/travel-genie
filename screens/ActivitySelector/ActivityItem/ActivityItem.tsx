@@ -16,7 +16,7 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({ activity, selected, 
       }}>{activity.name}
         <div>
           {selected && (
-            <span style={{ color: 'green', fontSize: '20px' }}>✓</span>
+            <span style={{ color: 'lightgreen', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
           )}
         </div>
       </div>
