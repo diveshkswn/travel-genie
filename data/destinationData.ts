@@ -14,7 +14,7 @@ export const destinations = [
         activtityImgUrl:
           "https://cdn.thecollector.com/wp-content/uploads/2022/04/central-park-aerial-view-greensward-plan.jpg?width=1400&quality=70",
         price: 50,
-        activityType: "Food and drink experiences",
+        activityType: "Shopping",
       },
       {
         id: 2,
@@ -50,6 +50,7 @@ export const destinations = [
         activtityImgUrl:
           "https://cdn.pixabay.com/photo/2014/10/22/18/04/man-498473_1280.jpg",
         price: 75,
+        activityType: "Historical tours",
       },
       {
         id: 2,
@@ -58,6 +59,7 @@ export const destinations = [
         activtityImgUrl:
           "https://cdn.pixabay.com/photo/2018/06/12/20/17/soccer-3471402_1280.jpg",
         price: 90,
+        activityType: "Historical tours",
       },
     ],
     cityRestaurant: [
@@ -84,6 +86,7 @@ export const destinations = [
         activtityImgUrl:
           "https://www.neverendingvoyage.com/wp-content/uploads/2019/11/sensoji-things-to-do-in-tokyo-japan.jpg",
         price: 30,
+        activityType: "Cultural experiences",
       },
       {
         id: 2,
@@ -92,6 +95,7 @@ export const destinations = [
         activtityImgUrl:
           "https://www.neverendingvoyage.com/wp-content/uploads/2017/10/simon-maricar-tokyo-933x700.jpg",
         price: 40,
+        activityType: "Sightseeing",
       },
     ],
     cityRestaurant: [
@@ -118,6 +122,7 @@ export const destinations = [
         activtityImgUrl:
           "https://www.datocms-assets.com/6737/1533664861-sydney-aquariumown.jpg?auto=compress%2Cformat&dpr=1&fm=jpg&w=1000",
         price: 65,
+        activityType: "Sightseeing",
       },
       {
         id: 2,
@@ -126,6 +131,7 @@ export const destinations = [
         activtityImgUrl:
           "https://www.datocms-assets.com/6737/1533664952-bondi-to-coogee-walkgordons-bay-own.jpg?auto=compress%2Cformat&dpr=1&fm=jpg&w=1000",
         price: 25,
+        activityType: "Sightseeing",
       },
     ],
     cityRestaurant: [
@@ -152,6 +158,7 @@ export const destinations = [
         activtityImgUrl:
           "https://i0.wp.com/mindfulwonderer.com/wp-content/uploads/2021/10/Harry-Potter-Theatre-Romantic-things-to-do-in-London.jpg?w=1000&ssl=1",
         price: 60,
+        activityType: "Historical tours",
       },
       {
         id: 2,
@@ -160,6 +167,7 @@ export const destinations = [
         activtityImgUrl:
           "https://www.westend.com/wp-content/uploads/westend_london_mamma_mia_hero-1030x579.jpg",
         price: 100,
+        activityType: "Cultural experiences",
       },
     ],
     cityRestaurant: [
