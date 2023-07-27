@@ -7,6 +7,7 @@ export const StyledButton = styled("button")`
     outline: none;
     border-radius: 16px;
     font-size: 18px;
+    color:white !important;
 
     &.save-btn {
         margin: 50px auto

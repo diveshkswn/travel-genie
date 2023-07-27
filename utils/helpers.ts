@@ -63,6 +63,8 @@ export const handleLogin = ({
     JSON.stringify(authCookie),
     Number(NEXT_PUBLIC_AUTH_TIMEOUT || "5")
   );
+  localStorage.setItem('name', name);
+  localStorage.setItem('email', email);
   callbackFn?.();
 };
 

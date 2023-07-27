@@ -5,7 +5,7 @@ import { ButtonProps } from "./Button.types";
 
 const Button = ({handleClick, text, className = '', type = "button"}: ButtonProps) => {
   return (
-    <StyledButton type={type} className={`secondary ${className}`} onClick={handleClick}>
+    <StyledButton type={type} className={`secondary-bg ${className}`} onClick={handleClick}>
       {text}
     </StyledButton>
   );
