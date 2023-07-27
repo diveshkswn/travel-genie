@@ -3,6 +3,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { destinations } from "@/data/destinationData";
 // export const runtime = "edge";
+// import "../../../destinationvector";
 
 export async function POST(request: Request) {
   let requestBody;
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
   console.log("requestBody", requestBody);
 
   const message = requestBody?.message;
-  const vectorDirectory = "destinationvector";
+  const vectorDirectory = "public/destinationvector";
 
   const vectorStore = await HNSWLib.load(
     vectorDirectory,
