@@ -11,10 +11,16 @@ const Card = (props: CardProps) => {
   const handleCardClick = () => {
     const recents: CardProps[] = JSON.parse(sessionStorage.getItem("recents") || '[]');
     const index = recents.findIndex(item => item.city === city);
+    let selectedIndex = index === -1 ? recents.length : index;
     if(index === -1) {
-      sessionStorage.setItem("recents", JSON.stringify([...recents, { ...props }]));
+      const data = [...recents, { ...props }]
+      if (data.length > 10) {
+        data.shift(); // Remove the first element from the array
+        selectedIndex = 9;
+      }
+      sessionStorage.setItem("recents", JSON.stringify(data));
     }
-    sessionStorage.setItem("selectedIndex", JSON.stringify(index === -1 ? recents.length : index));
+    sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
     router.push("detailView");
   };
 
