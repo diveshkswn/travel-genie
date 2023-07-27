@@ -1,6 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "max-len": ["warn", { "code": 120 }]
-  }
+  "extends": "next/core-web-vitals"
+  // "rules": {
+  //   "max-len": ["warn", { "code": 120 }]
+  // }
 }
