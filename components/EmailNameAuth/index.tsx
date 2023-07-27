@@ -3,6 +3,7 @@
 import { handleLogin } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import { memo, useRef } from "react";
+import { SearchComponent } from "../Search";
 
 export function EmailNameAuth() {
   const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -20,8 +21,10 @@ export function EmailNameAuth() {
   };
   return (
     <>
-      <input type="text" name="name" ref={nameRef} />
-      <input type="email" name="email" ref={emailRef} />
+      <SearchComponent placeholder="Email" />
+      <SearchComponent placeholder="Password" />
+      {/* <input type="text" name="name" ref={nameRef} />
+      <input type="email" name="email" ref={emailRef} /> */}
       <button type="submit" onClick={login}>
         Login
       </button>
