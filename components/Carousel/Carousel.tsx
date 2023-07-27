@@ -3,22 +3,22 @@
 import { memo, useEffect } from "react";
 import { CarouselSection } from "./ Carousel.styles";
 import { CarouselProps } from "./Carousel.types";
-// import Glide from "@glidejs/glide";
+import Glide from "@glidejs/glide";
 import "./style.scss";
 import { handleLogout } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 export function Carousel(props: CarouselProps) {
   const router = useRouter();
-  // useEffect(() => {
-  //   new Glide(".glide", {
-  //     type: "carousel",
-  //     autoplay: 5000,
-  //     hoverpause: true,
-  //     gap: 0,
-  //     startAt: 0,
-  //   }).mount();
-  // }, []);
+  useEffect(() => {
+    new Glide(".glide", {
+      type: "carousel",
+      autoplay: 5000,
+      hoverpause: true,
+      gap: 0,
+      startAt: 0,
+    }).mount();
+  }, []);
 
   return (
     <CarouselSection className="CarouselContainer">

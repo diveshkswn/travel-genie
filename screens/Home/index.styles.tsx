@@ -22,5 +22,6 @@ export const StyledSection = styled("section")`
     outline: none;
     border-radius: 16px;
     font-size: 18px;
+    color:white !important;
   }
 `;
