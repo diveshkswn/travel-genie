@@ -6,4 +6,6 @@ export interface DestinationProps {
   city: string;
   country: string;
   review: string;
+  placeName: string;
+  overview: string;
 }

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { HomeProps } from "./index.types";
 import { StyledSection } from "./index.styles";
 import { Carousel } from "@/components/Carousel/Carousel";
+import Button from "@/components/Button/Button";
 
 export function Home(props: HomeProps) {
   const router = useRouter();
@@ -24,7 +25,7 @@ export function Home(props: HomeProps) {
         <Carousel />
       </div>
       <div className="d-flex justify-content-center align-items-center">
-        <button className="secondary" onClick={handleButtonClick}>Continue</button>
+        <Button text="Continue" handleClick={handleButtonClick} className="btn"/>
       </div>
     </StyledSection>
   );

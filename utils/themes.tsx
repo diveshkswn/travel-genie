@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.colors.primaryColor};
+    height: 100vh;
 
     .secondary {
       background: ${({ theme }) => theme.background} !important;

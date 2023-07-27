@@ -4,4 +4,6 @@ export interface CardProps {
   url: string;
   review: string;
   isVertical?: boolean;
+  placeName: string;
+  overview: string;
 }

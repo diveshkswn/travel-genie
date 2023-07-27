@@ -6,7 +6,7 @@ import { StyledCard } from "./index.styles";
 
 const Card = (props: CardProps) => {
   const router = useRouter();
-  const { city, country, url, isVertical = false } = props;
+  const { city, country, url, isVertical = false, placeName } = props;
 
   const handleCardClick = () => {
     const recents: CardProps[] = JSON.parse(sessionStorage.getItem("recents") || '[]');
@@ -31,8 +31,8 @@ const Card = (props: CardProps) => {
     >
       <img src={url} alt={city} />
       <div className="d-flex flex-column">
-        <span>{city}</span>
-        <span className="subtitle secondary-fg">{country}</span>
+        <span>{placeName}</span>
+        <span className="subtitle secondary-fg">{city} - {country}</span>
       </div>
     </StyledCard>
   );
