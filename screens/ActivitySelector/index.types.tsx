@@ -1,0 +1,4 @@
+interface ActivitySelectorProps {
+    activities: Activity[];
+  }
+  
