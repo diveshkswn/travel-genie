@@ -27,17 +27,11 @@ export function Discover(props: DiscoverProps) {
 
   useEffect(() => {
     const recents: DestinationProps[] = JSON.parse(sessionStorage.getItem("recents") || "[]");
+    const popular_destinations: DestinationProps[] = JSON.parse(sessionStorage.getItem("popularDestination") || "[]");
+    const recommended_destinations: DestinationProps[] = JSON.parse(sessionStorage.getItem("recommendedDestination") || "[]");
     setRecentData(recents);
-  }, []);
-
-  useEffect(() => {
-    const data: DestinationProps[] = JSON.parse(sessionStorage.getItem("popularDestination") || "[]");
-    setPopularDestination(data);
-  }, []);
-
-  useEffect(() => {
-    const data: DestinationProps[] = JSON.parse(sessionStorage.getItem("recommendedDestination") || "[]");
-    setRecommenderDestination(data);
+    setPopularDestination(popular_destinations);
+    setRecommenderDestination(recommended_destinations);
   }, []);
 
   return (
