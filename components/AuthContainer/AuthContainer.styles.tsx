@@ -25,6 +25,7 @@ export const AuthContainerDiv = styled("div")<{ $minHeight?: number }>(
     input {
       margin: 10px 0;
       border-radius: 30px;
+      color: white;
     }
     button {
       width: 100%;

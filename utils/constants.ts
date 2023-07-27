@@ -52,6 +52,6 @@ export const constants = {
     },
     // Add more activities here as needed
   ],
-  POPULAR_DESTINATION_PROMPT: "Please provide me 5 popular destinations to visit all over the world in the below JSON format [{city, country, review}]",
-  RECOMMENDED_DESTINATION_PROMPT: "Please provide me 5 recommended destinations to visit all over the world that is famous for {selectedActivities} in the below JSON format [{city, country, review}]"
+  POPULAR_DESTINATION_PROMPT: "Please provide me 5 popular destinations to visit all over the world in the below JSON format [{placeName, city, country, review, overview, costPerPerson}]",
+  RECOMMENDED_DESTINATION_PROMPT: "Please provide me 5 recommended destinations to visit all over the world that is famous for {selectedActivities} in the below JSON format [{placeName, city, country, review, overview, costPerPerson}]"
 };

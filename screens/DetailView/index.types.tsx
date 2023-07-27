@@ -3,4 +3,6 @@ export interface DetailViewProps {
     country: string;
     url: string;
     review: string;
+    placeName: string;
+    overview: string;
 }

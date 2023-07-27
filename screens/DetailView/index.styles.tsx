@@ -28,14 +28,8 @@ export const StyledSection = styled("section")(
     padding: 16px;
   }
 
-  button {
+  .btn {
     position: absolute;
     bottom: 24px;
-    width: fit-content;
-    padding: 16px 32px;
-    border: none;
-    outline: none;
-    border-radius: 16px;
-    font-size: 18px;
   }
 `);
