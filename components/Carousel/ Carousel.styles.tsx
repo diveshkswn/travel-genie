@@ -3,15 +3,27 @@ import { styled } from "styled-components";
 export const CarouselSection = styled("section")`
   width: 100%;
   height: 100vh;
-
+  .progressBar{
+    position:absolute;
+    left: 0px;
+    top: 15px;
+    z-index: 999;
+    width: 100%;
+  }
   .glide {
     width: 100%;
+    posit
   }
   .glide__slide img {
     width: 100%;
     height: 100vh;
     // Needs object-fit polyfill for IE
     object-fit: cover;
+    
+  }
+  .glide__slide img.weatherIcon {
+    width: 30px;
+    height: 30px;
   }
 
   .glide__bullets {
@@ -19,6 +31,8 @@ export const CarouselSection = styled("section")`
     justify-content: center;
     margin-right: -10px;
     margin-left: -10px;
+    position:relative;
+    padding:0 20px;
   }
 
   .glide__bullet {
@@ -30,7 +44,7 @@ export const CarouselSection = styled("section")`
     border: 0;
     overflow: hidden;
     color: #fff;
-    height: 5px;
+    height: 2px;
     margin-right: 10px;
     margin-left: 10px;
     background-color: transparent;
@@ -41,7 +55,7 @@ export const CarouselSection = styled("section")`
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 4px;
+      height: 2px;
       display: block;
       opacity: 0;
       transform: translateX(-100%);
