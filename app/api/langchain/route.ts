@@ -17,7 +17,8 @@ export async function POST(request: Request) {
   console.log("requestBody", requestBody);
 
   const message = requestBody?.message;
-  const vectorDirectory = "app/api/langchain/destinationvector";
+  const vectorDirectory = "./destinationvector";
+  // const vectorDirectory = "./app/api/langchain/destinationvector";
 
   console.log("__dirname", __dirname);
   const vectorStore = await HNSWLib.load(
