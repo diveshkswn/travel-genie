@@ -2,11 +2,15 @@
 
 import { memo } from "react";
 import { StyledSearch } from "./index.styles";
+import { PropsTypes } from "./index.types";
 
-export function Search() {
+export function Search(props: PropsTypes) {
+  const {
+    placeholder = 'Search'
+  } = props;
   return (
     <StyledSearch>
-      <input placeholder="Search" className="secondary-bg"/>
+      <input placeholder={placeholder} className="secondary-bg"/>
     </StyledSearch>
   );
 }

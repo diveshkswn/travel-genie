@@ -40,9 +40,14 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   };
 
   return (
-    <>
-      <div style={{
-        margin: '20px',
+    <div className='activity-container' style={{
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      <div className='secondary-bg' style={{
+        padding: '20px',
+        fontFamily: 'fantasy',
+        textAlign: 'center'
       }}>
         <h1>Select Activities</h1>
         <p>Activities that you might want to do:- </p>
@@ -65,14 +70,14 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
           padding: '10px',
           border: 'none',
           borderRadius: '5px',
-          margin: '50px',
+          margin: '50px auto',
           cursor: 'pointer',
           fontSize: '24px'
         }}
       >
         Save
       </button>
-    </>
+    </div>
   );
 };
 
