@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { destinations } from "@/data/destinationData";
-
+import { generateEmbeddings } from "../../../generateEmbeddings";
 // export const runtime = "edge";
 
 export async function POST(request: Request) {
@@ -15,12 +15,20 @@ export async function POST(request: Request) {
   }
 
   console.log("requestBody", requestBody);
+  const generateNewEmbeddings = requestBody?.generateNewEmbeddings;
 
+  if (generateNewEmbeddings) {
+    try {
+      generateEmbeddings();
+      return NextResponse.json({ message: "New Embeddings Generated" });
+    } catch (e) {
+      return NextResponse.json({ message: `Error : ${e}` });
+    }
+  }
   const message = requestBody?.message;
   const vectorDirectory = "./destinationvector";
   // const vectorDirectory = "./app/api/langchain/destinationvector";
 
-  console.log("__dirname", __dirname);
   const vectorStore = await HNSWLib.load(
     vectorDirectory,
     new OpenAIEmbeddings()

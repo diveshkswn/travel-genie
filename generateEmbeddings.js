@@ -10,6 +10,7 @@ require('dotenv').config({path: './.env.local'})
 
 
 const generateEmbeddings = async () => {
+  console.log("Generating Embeddings")
   try {
     const start = performance.now() / 1000;
 
@@ -54,3 +55,5 @@ const generateEmbeddings = async () => {
 };
 
 generateEmbeddings();
+
+module.exports={generateEmbeddings}
