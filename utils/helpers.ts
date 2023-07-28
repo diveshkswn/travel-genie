@@ -84,7 +84,7 @@ export const getData = async (message: string) => {
 
   const content = parsedRes?.data?.messages?.[2]?.content || "";
   const startIndex = content.indexOf("[");
-  const endIndex = content.indexOf("]", startIndex);
+  const endIndex = content.lastIndexOf("]");
 
-  return JSON?.parse?.(content.substring(startIndex, endIndex + 1) || '[]');
+  return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || '[]');
 };

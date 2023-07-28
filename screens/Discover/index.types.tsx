@@ -3,9 +3,8 @@ export interface DiscoverProps {
 }
 
 export interface DestinationProps {
+  itinerayData?: any;
   city: string;
   country: string;
-  review: string;
-  placeName: string;
   overview: string;
 }
