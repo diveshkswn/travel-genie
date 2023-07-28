@@ -31,7 +31,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
 
   const handleSaveClick = async () => {
     setIsLoading(true)
-    const prompt = RECOMMENDED_DESTINATION_PROMPT.replace("{selectedActivities}",selectedActivities.join(""));
+    const prompt = RECOMMENDED_DESTINATION_PROMPT.replace("{selectedActivities}",selectedActivities.join(" "));
     
     const recommendedDestination = await getData(prompt);
     const popularDestination = await getData(POPULAR_DESTINATION_PROMPT);
@@ -44,7 +44,6 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
       sessionStorage.setItem("recommendedDestination",JSON.stringify(recommendedDestination));
     };
     
-    setIsLoading(false);
     router.push('discover');
   };
 

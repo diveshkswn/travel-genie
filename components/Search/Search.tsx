@@ -1,16 +1,18 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import { StyledSearch } from "./index.styles";
 import { PropsTypes } from "./index.types";
+import Button from "../Button/Button";
+import { constants } from "@/utils/constants";
 
-export function Search(props: PropsTypes) {
-  const {
-    placeholder = 'Search'
-  } = props;
+export function Search({placeholder = 'Search', handleSearch}: PropsTypes) {
+  const {SEARCH_PROMPT} = constants;
+  const [searchData, setSearchData] = useState('');
   return (
     <StyledSearch>
-      <input placeholder={placeholder} className="secondary-bg"/>
+      <input placeholder={placeholder} className="secondary-bg" onChange={(e) => setSearchData(e.target.value)}/>
+      {handleSearch !== undefined && <Button className="bi bi-search px-4 py-2" text={""} handleClick={() => handleSearch?.(SEARCH_PROMPT.replace('user_input', searchData))}/>}
     </StyledSearch>
   );
 }

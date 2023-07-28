@@ -2,8 +2,7 @@ export interface CardProps {
   city: string;
   country: string;
   url: string;
-  review: string;
   isVertical?: boolean;
-  placeName: string;
   overview: string;
+  handleCardClick: (params: Record<string, string>) => void;
 }
