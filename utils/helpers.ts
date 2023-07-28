@@ -61,7 +61,7 @@ export const handleLogin = ({
   setCookie(
     "tgAuth",
     JSON.stringify(authCookie),
-    Number(NEXT_PUBLIC_AUTH_TIMEOUT || "5")
+    Number(process.env.NEXT_PUBLIC_AUTH_TIMEOUT || "5")
   );
   localStorage.setItem("name", name);
   localStorage.setItem("email", email);
