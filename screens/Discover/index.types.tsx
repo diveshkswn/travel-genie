@@ -7,4 +7,5 @@ export interface DestinationProps {
   city: string;
   country: string;
   overview: string;
+  imgURL: string;
 }

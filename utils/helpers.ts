@@ -63,8 +63,8 @@ export const handleLogin = ({
     JSON.stringify(authCookie),
     Number(NEXT_PUBLIC_AUTH_TIMEOUT || "5")
   );
-  localStorage.setItem('name', name);
-  localStorage.setItem('email', email);
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
   callbackFn?.();
 };
 
@@ -86,5 +86,27 @@ export const getData = async (message: string) => {
   const startIndex = content.indexOf("[");
   const endIndex = content.lastIndexOf("]");
 
-  return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || '[]');
+  return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]");
+};
+
+export const getLangChainData = async (
+  message: string,
+  datacount = 1,
+  url = "/langchain"
+): Promise<any> => {
+  const reqBody = { message, count: datacount };
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LANG_CHAIN_HOST}${url}`, {
+    headers: { "content-type": "application/json" },
+    method: "POST",
+    body: JSON.stringify(reqBody),
+  });
+
+  const parsedRes = await res.json();
+  console.log("parsedRed", parsedRes);
+  return parsedRes;
+  // const content = parsedRes?.data?.messages?.[2]?.content || "";
+  // const startIndex = content.indexOf("[");
+  // const endIndex = content.lastIndexOf("]");
+
+  // return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]");
 };

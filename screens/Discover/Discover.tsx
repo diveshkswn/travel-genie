@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 "use client";
 
-import { Key, memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Search } from "@/components/Search/Search";
@@ -29,20 +29,28 @@ export function Discover(props: DiscoverProps) {
   const [recentData, setRecentData] = useState<DestinationProps[]>([]);
 
   useEffect(() => {
-    const recents: DestinationProps[] = JSON.parse(sessionStorage.getItem("recents") || "[]");
-    const popular_destinations: DestinationProps[] = JSON.parse(sessionStorage.getItem("popularDestination") || "[]");
-    const recommended_destinations: DestinationProps[] = JSON.parse(sessionStorage.getItem("recommendedDestination") || "[]");
+    const recents: DestinationProps[] = JSON.parse(
+      sessionStorage.getItem("recents") || "[]"
+    );
+    const popular_destinations: DestinationProps[] = JSON.parse(
+      sessionStorage.getItem("popularDestination") || "[]"
+    );
+    const recommended_destinations: DestinationProps[] = JSON.parse(
+      sessionStorage.getItem("recommendedDestination") || "[]"
+    );
     setRecentData(recents);
     setPopularDestination(popular_destinations);
     setRecommenderDestination(recommended_destinations);
   }, []);
 
-  const renderCard = (item: DestinationProps, key: string, isVertical = true) => {
+  const renderCard = (
+    item: DestinationProps,
+    key: string,
+    isVertical = true
+  ) => {
     return (
       <Card
-        url={
-          "https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80"
-        }
+        url={item.imgURL}
         key={key}
         {...item}
         isVertical={isVertical}
@@ -53,31 +61,41 @@ export function Discover(props: DiscoverProps) {
     );
   };
 
-  const handleCardClick = async (cardData: Record<string, string>, itinerayPropmt?: string) => {
+  const handleCardClick = async (
+    cardData: Record<string, string>,
+    itinerayPropmt?: string
+  ) => {
     const { city } = cardData;
     const index = recentData.findIndex((item) => item.city === city);
     let selectedIndex = index === -1 ? recentData.length : index;
-    
+
     if (index === -1) {
       setIsLoading(true);
-      let prompt = '';
-      if(itinerayPropmt) {
+      let prompt = "";
+      if (itinerayPropmt) {
         prompt = itinerayPropmt;
       } else {
-        const selectedActivities: string[] = JSON.parse(sessionStorage.getItem("selectedActivities") || "[]");
-        prompt = ITINERAY_PROMPT.replace("{selectedActivities}",selectedActivities.join(" "));
+        const selectedActivities: string[] = JSON.parse(
+          sessionStorage.getItem("selectedActivities") || "[]"
+        );
+        prompt = ITINERAY_PROMPT.replace(
+          "{selectedActivities}",
+          selectedActivities.join(" ")
+        );
         prompt = prompt.replace("{num_of_days}", "3");
         prompt = prompt.replace("{city}", city);
       }
-      
+
       const itinerayData = await getData(prompt);
-      const locationData = city ? cardData : {
-        city: itinerayData?.[0]?.['Day1']?.cityName, 
-        overview: itinerayData?.[0]?.['Day1']?.cityOverview,
-        country: itinerayData?.[0]?.['Day1']?.country,
-        url:"https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80"
-      };
-      const data = [...recentData, {...locationData , itinerayData }];
+      const locationData = city
+        ? cardData
+        : {
+            city: itinerayData?.[0]?.["Day1"]?.cityName,
+            overview: itinerayData?.[0]?.["Day1"]?.cityOverview,
+            country: itinerayData?.[0]?.["Day1"]?.country,
+            url: "https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80",
+          };
+      const data = [...recentData, { ...locationData, itinerayData }];
 
       if (data.length > 10) {
         data.shift(); // Remove the first element from the array
@@ -89,7 +107,7 @@ export function Discover(props: DiscoverProps) {
       const itinerayData = recentData[selectedIndex]?.itinerayData;
       sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
     }
-    
+
     sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
     router.push("detailView");
   };
@@ -106,7 +124,9 @@ export function Discover(props: DiscoverProps) {
             <i className="bi bi-person-fill" />
           </span>
         </div>
-        <Search handleSearch={(prompt: string) => handleCardClick({}, prompt)}/>
+        <Search
+          handleSearch={(prompt: string) => handleCardClick({}, prompt)}
+        />
         <Tabs
           tabList={TAB_LIST}
           onTabClick={(selectedName: string) => setSelectedTab(selectedName)}
