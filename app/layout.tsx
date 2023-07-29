@@ -29,6 +29,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Agdasima&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@100&display=swap"
+          rel="stylesheet"
+        ></link>
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>

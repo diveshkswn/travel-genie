@@ -6,6 +6,30 @@ export const StyledSection = styled("section")(
   position: relative;
   overflow: hidden;
 
+  h2{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:55px;
+  }
+
+  span{
+    font-family: "Agdasima", sans-serif;
+    font-size:30px;
+  }
+
+  .day-details{
+    padding-top:35px;
+    padding-left:20px;
+    font-family: "Agdasima", sans-serif;
+    font-size: 20px;
+    h3{
+      font-size:30px;
+    }
+    h5 {
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 2px;
+    }
+  }
+
   .img-container {
     position: relative;
     img {
