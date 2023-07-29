@@ -1,6 +1,6 @@
 export interface ButtonProps {
     text: string;
-    handleClick: () => void;
+    handleClick?: () => void;
     className?: string;
     type?: "button" | "submit" | "reset" | undefined;
 }

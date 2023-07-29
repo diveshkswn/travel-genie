@@ -10,6 +10,9 @@ export const AuthContainerDiv = styled("div")<{ $minHeight?: number }>(
     display: flex;
     flex-direction: column;
     align-items: center;
+    form {
+      width: 100%;
+    }
     .main-text {
       margin-top: 200px;
       margin-bottom: 100px;

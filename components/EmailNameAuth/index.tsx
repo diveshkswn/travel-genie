@@ -22,11 +22,13 @@ export function EmailNameAuth() {
   };
   return (
     <>
-      <SearchComponent placeholder="Name" className="w-100"/>
-      <SearchComponent placeholder="Email" className="w-100"/>
+    <form onSubmit={login}>
+      <SearchComponent required placeholder="Name" className="w-100"/>
+      <SearchComponent required placeholder="Email" type="email" className="w-100"/>
       {/* <input type="text" name="name" ref={nameRef} />
       <input type="email" name="email" ref={emailRef} /> */}
-      <Button type="submit" text="Login" handleClick={login}/>
+      <Button type="submit" text="Login"/>
+    </form>
     </>
   );
 }
