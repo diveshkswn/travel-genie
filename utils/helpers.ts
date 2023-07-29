@@ -95,7 +95,7 @@ export const getLangChainData = async (
   url = "/langchain"
 ): Promise<any> => {
   const reqBody = { message, count: datacount };
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LANG_CHAIN_HOST}${url}`, {
+  const res = await fetch(`${"https://langchain-express.onrender.com"}${url}`, {
     headers: { "content-type": "application/json" },
     method: "POST",
     body: JSON.stringify(reqBody),
@@ -125,4 +125,4 @@ export const getPopularDestinations = (data: any, size = 5) => {
 
   // Return the first 'size' elements of the shuffled array.
   return shuffled.slice(0, size);
-}
+};
