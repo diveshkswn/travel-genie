@@ -41,6 +41,7 @@ const DetailView = () => {
               <div className="day-details">
                 <h3 className="date">Day {item.day}</h3>
                 <h5 className="place">{item?.destination}</h5>
+                <p className="place">{item?.destinationDesc}</p>
               </div>
               <img
                 src={

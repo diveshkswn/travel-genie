@@ -5,6 +5,10 @@ export const StyledSection = styled("section")(
   height: 100vh;
   position: relative;
   overflow: hidden;
+  p.place{
+    font-family: sans-serif;
+    font-size:13px;
+  }
   p{
     margin-bottom:30px;
   }
