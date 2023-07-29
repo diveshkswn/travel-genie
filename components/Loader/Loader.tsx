@@ -10,7 +10,7 @@ const Loader = () => {
         alt="Genie Image"
         style={{ width: "100px", height: "100px" }}
       />
-      <h1 style={{ fontSize: "3rem", marginTop: "1rem" }}>Travel</h1>
+      <h1 style={{ fontSize: "1.2rem", marginTop: "0.5rem" }}>Travel Genie</h1>
     </LoaderSection>
   );
 };
