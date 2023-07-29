@@ -75,6 +75,6 @@ export const constants = {
   POPULAR_DESTINATION_PROMPT: "Please provide me 5 popular destinations to visit all over the world in the exact below JSON format [{city, country, overview}]",
   RECOMMENDED_DESTINATION_PROMPT: "Please provide me 5 recommended destinations to visit all over the world that is famous for {selectedActivities} in the exact below JSON format [{city, country, overview}]",
   ITINERAY_PROMPT: `Please provide me {num_of_days} days itineray to visit in {city} that is famous for {selectedActivities} in the exact below JSON format ${SEARCH_JSON}`,
-  SEARCH_PROMPT: `Please provide me itineray to visit in {user_input} in the exact below JSON format ${SEARCH_JSON}  with default 3 days if not mentioned above`,
+  SEARCH_PROMPT: `Please provide me itineray to visit in {user_input} in the exact below JSON format ${SEARCH_JSON} with default 3 days if not mentioned above`,
   UPDATE_SEARCH_PROMPT: `Update itineray based on {user_input} in the exact below JSON format ${SEARCH_JSON}`
 }

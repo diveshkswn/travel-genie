@@ -36,9 +36,9 @@ const DetailView = () => {
   const handleSearch = async (prompt: string) => {
     setIsLoading(true);
     console.log(chatId);
-    const {data: itinerayData} = await getData(`${prompt} for chat id ${chatId}`, chatId);
-    sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
-    setItinerayData(itinerayData);
+    const {data} = await getData(`${prompt} for chat id ${chatId} with default ${itinerayData?.[0]?.cityName} city if not mentioned in this prompt`, chatId);
+    sessionStorage.setItem("itinerayData", JSON.stringify(data));
+    setItinerayData(data);
     setIsLoading(false);
   };
 
