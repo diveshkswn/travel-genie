@@ -30,15 +30,14 @@ const DetailView = () => {
         <span>Description</span>
         <p className="secondary-fg pt-3">{overview}</p>
         {itinerayData?.map((item, index) => {
-          const day = Object.keys(item)[0];
           return (<div className="img-col" key={`itineray-${index}`}>
             <div>
-              <h3 className="date">{day}</h3>
-              <h5 className="place">{item?.[day]?.travelLocation}</h5>
+              <h3 className="date">Day {item.day}</h3>
+              <h5 className="place">{item?.destination}</h5>
             </div>
             <img 
               src={"https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"} 
-              alt={item?.[day]?.travelLocation} 
+              alt={item?.destination} 
             />
           </div>)
         })}
