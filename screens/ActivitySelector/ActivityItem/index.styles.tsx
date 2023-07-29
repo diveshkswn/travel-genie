@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
 export const StyledItemContainer = styled("div")(
-    () => `
+  () => `
     margin: 5px;
     text-align: center;
-    height: 150px;
+    height: 115px;
     width: 150px;
     display: flex;
     justify-content: center;
@@ -28,4 +28,5 @@ export const StyledItemContainer = styled("div")(
             border: 2px solid black;
         }
     }
-  `);
+  `
+);
