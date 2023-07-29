@@ -5,6 +5,35 @@ export const StyledSection = styled("section")(
   height: 100vh;
   position: relative;
   overflow: hidden;
+  p.place{
+    font-family: sans-serif;
+    font-size:13px;
+  }
+  p{
+    margin-bottom:30px;
+  }
+  h2{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:55px;
+  }
+
+  span{
+    font-family: "Agdasima", sans-serif;
+    font-size:30px;
+  }
+
+  .day-details{
+    padding-top:10px;
+    font-family: "Agdasima", sans-serif;
+    font-size: 20px;
+    h3{
+      font-size:30px;
+    }
+    h5 {
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 2px;
+    }
+  }
 
   .img-container {
     position: relative;
@@ -37,8 +66,8 @@ export const StyledSection = styled("section")(
       padding-bottom: 16px;
   
       img {
-        height: 150px !important;
-        width: 150px;
+        height: auto;
+        width: 180px;
         border-radius: 14px;
       }
     }

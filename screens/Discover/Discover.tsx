@@ -67,8 +67,13 @@ export function Discover(props: DiscoverProps) {
       if (itinerayPropmt) {
         prompt = itinerayPropmt;
       } else {
-        const selectedActivities: string[] = JSON.parse(sessionStorage.getItem("selectedActivities") || "[]");
-        prompt = ITINERAY_PROMPT.replace("{selectedActivities}",selectedActivities.join(" "));
+        const selectedActivities: string[] = JSON.parse(
+          sessionStorage.getItem("selectedActivities") || "[]"
+        );
+        prompt = ITINERAY_PROMPT.replace(
+          "{selectedActivities}",
+          selectedActivities.join(" ")
+        );
         prompt = prompt.replace("{num_of_days}", "3");
         prompt = prompt.replace("{city}", city);
       }
@@ -142,7 +147,7 @@ export function Discover(props: DiscoverProps) {
             )}
           </div>
           {recommendedDestination.length > 0 && (
-            <h3 className="mt-4">Recommended:</h3>
+            <h3 className="mt-5">Recommended:</h3>
           )}
           <div className="d-flex card-container">
             {recommendedDestination?.map((item, index) =>
