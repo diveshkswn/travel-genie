@@ -67,7 +67,7 @@ export const StyledSection = styled("section")(
   
       img {
         height: auto;
-        width: 180px;
+        width: 150px;
         border-radius: 14px;
       }
     }

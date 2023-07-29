@@ -16,19 +16,24 @@ export function EmailNameAuth() {
       name: nameRef.current?.value || "",
       email: emailRef.current?.value || "",
       callbackFn: () => {
-        router.push("/");
+        router.push("/discover");
       },
     });
   };
   return (
     <>
-    <form onSubmit={login}>
-      <SearchComponent required placeholder="Name" className="w-100"/>
-      <SearchComponent required placeholder="Email" type="email" className="w-100"/>
-      {/* <input type="text" name="name" ref={nameRef} />
+      <form onSubmit={login}>
+        <SearchComponent required placeholder="Name" className="w-100" />
+        <SearchComponent
+          required
+          placeholder="Email"
+          type="email"
+          className="w-100"
+        />
+        {/* <input type="text" name="name" ref={nameRef} />
       <input type="email" name="email" ref={emailRef} /> */}
-      <Button type="submit" text="Login"/>
-    </form>
+        <Button type="submit" text="Login" />
+      </form>
     </>
   );
 }
