@@ -16,7 +16,7 @@ export function EmailNameAuth() {
       name: nameRef.current?.value || "",
       email: emailRef.current?.value || "",
       callbackFn: () => {
-        router.push("/");
+        router.push("/discover");
       },
     });
   };

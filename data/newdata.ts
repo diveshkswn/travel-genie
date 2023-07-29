@@ -489,7 +489,7 @@ export const destinations = [
       "Embark on an exhilarating adventure in the dazzling city of Dubai. Explore futuristic architecture, experience desert safaris, indulge in luxury shopping, and discover the vibrant culture of the United Arab Emirates.",
     country: "United Arab Emirates",
     imgURL:
-      "https://yourdubaiguide.com/wp-content/uploads/2021/03/Dubai-City-UAE.jpg",
+      "https://static.independent.co.uk/2023/07/04/09/iStock-1193239486.jpg",
     cityRestaurant: [
       {
         id: 1,

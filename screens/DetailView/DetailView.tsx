@@ -3,6 +3,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 
 import Search from "@/components/Search/Search";
+import CityHeader from "@/components/CityHeader/CityHeader";
 import Loader from "@/components/Loader/Loader";
 import { getData, searchImageAPI } from "@/utils/helpers";
 import { constants } from "@/utils/constants";
@@ -14,6 +15,7 @@ const { UPDATE_SEARCH_PROMPT } = constants;
 
 const DetailView = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showWeather, showHideWeather] = useState(false);
   const [detail, setDetail] = useState<DetailViewProps>();
   const [itinerayData, setItinerayData] = useState<ItinerayProps[]>([]);
 
@@ -29,6 +31,7 @@ const DetailView = () => {
     );
     setDetail(recents[selectedIndex]);
     setItinerayData(itineray);
+    showHideWeather(true);
   }, []);
 
   const { city, url, overview, chatId, useGPT = false } = detail || {};
@@ -62,16 +65,21 @@ const DetailView = () => {
     sessionStorage.setItem("itinerayData", JSON.stringify(newItinerayData));
     setItinerayData(newItinerayData);
     setIsLoading(false);
+    showHideWeather(true);
     setTimeout(() => {
       setSearchData?.("");
     }, 500);
   };
-
+  console.log("abc", itinerayData[0]);
   return (
     <StyledSection>
+      {itinerayData[0]?.cityName}
       <div className="img-container">
         <img src={url} alt={itinerayData[0]?.cityName || city} />
         <h2 className="title">{itinerayData[0]?.cityName || city}</h2>
+        {showWeather ? (
+          <CityHeader city={itinerayData[0]?.cityName || city}></CityHeader>
+        ) : null}
       </div>
       <div className="content-container">
         <span>Description</span>
@@ -101,7 +109,6 @@ const DetailView = () => {
         <Search
           searchClassName="search"
           handleSearch={(prompt: string, setSearchData) => {
-            console.log("setSearchData", setSearchData);
             handleSearch(prompt, setSearchData);
           }}
           prompt={UPDATE_SEARCH_PROMPT}
