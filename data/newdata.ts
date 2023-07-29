@@ -949,7 +949,7 @@ export const destinations = [
       "Embark on a breathtaking adventure in the picturesque city of Zurich, Switzerland. Discover stunning landscapes, explore historic Old Town, indulge in Swiss chocolates and cheeses, and experience the vibrant arts and culture scene of this enchanting Swiss city.",
     country: "Switzerland",
     imgURL:
-      "https://www.planetware.com/photos-large/CHE/switzerland-zurich.jpg",
+      "https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/02/27/15/zurich-view.jpg",
     cityRestaurant: [
       {
         id: 1,
@@ -973,7 +973,7 @@ export const destinations = [
         destinationDesc:
           "Stroll along Bahnhofstrasse, one of the world's most exclusive shopping streets. Explore high-end boutiques, luxury stores, and indulge in Swiss watches and chocolates. Enjoy the vibrant atmosphere of this bustling avenue.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/CHE/switzerland-zurich-bahnhofstrasse.jpg",
+          "https://www.urtrips.com/wp-content/uploads/2022/10/Bahnhofstrasse-View.jpg",
       },
       {
         day: 2,
@@ -981,7 +981,7 @@ export const destinations = [
         destinationDesc:
           "Explore Zurich's historic Old Town (Altstadt), known for its medieval architecture and charming cobblestone streets. Visit landmarks like Fraumünster Church and Grossmünster Cathedral. Immerse yourself in the city's rich history and cultural heritage.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/CHE/switzerland-zurich-old-town.jpg",
+          "https://travel.usnews.com/images/altstadt_zurich_RniG1JI.jpg",
       },
       {
         day: 3,
@@ -989,7 +989,7 @@ export const destinations = [
         destinationDesc:
           "Relax by Zurich Lake (Zürichsee), a serene body of water surrounded by beautiful parks. Take a boat cruise to enjoy scenic views of the city and the Swiss Alps. Picnic by the lake or enjoy water activities like paddleboarding.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/CHE/switzerland-zurich-lake.jpg",
+          "https://travel.usnews.com/images/lake_zurich_switzerland_J2TI9ge.jpg",
       },
       {
         day: 4,
@@ -997,7 +997,7 @@ export const destinations = [
         destinationDesc:
           "Visit the Swiss National Museum (Landesmuseum Zürich) to learn about Swiss history and culture. Explore the extensive collection of artifacts, art, and exhibitions that showcase the country's heritage and traditions.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/CHE/switzerland-zurich-swiss-national-museum.jpg",
+          "https://www.atelier-brueckner.com/sites/default/files/styles/width-1440/public/gallery/lmz-sammlung-portraits-daniel-stauch_0.jpg?itok=zE-RrnG9",
       },
       {
         day: 5,
@@ -1005,7 +1005,7 @@ export const destinations = [
         destinationDesc:
           "Embark on an adventure to Uetliberg Mountain, known as Zurich's local mountain. Hike or take a train to the summit for panoramic views of the city and surrounding landscapes. Enjoy a day of outdoor activities and fresh mountain air.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/CHE/switzerland-zurich-uetliberg-mountain.jpg",
+          "https://travel.usnews.com/images/uetliberg_mountain_tower_LdWSkWe.jpg",
       },
     ],
     travelStyle: [
@@ -1023,7 +1023,7 @@ export const destinations = [
       "Embark on an adventurous journey in the beautiful city of Oslo, Norway. Discover stunning fjords, explore Viking history, experience the Nordic cuisine, and immerse yourself in the modern arts and culture scene of this captivating Scandinavian capital.",
     country: "Norway",
     imgURL:
-      "https://www.planetware.com/photos-large/Norway/NOR-oslo-opera-house.jpg",
+      "https://img.delicious.com.au/mKdtsu1d/del/2018/08/explore-norwegian-design-87094-2.jpg",
     cityRestaurant: [
       {
         id: 1,
@@ -1047,7 +1047,7 @@ export const destinations = [
         destinationDesc:
           "Explore Vigeland Park, the world's largest sculpture park created by a single artist. Admire over 200 bronze and granite sculptures by Gustav Vigeland, depicting the human experience and emotions.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/Norway/NOR-oslo-vigeland-park.jpg",
+          "https://img.theculturetrip.com/wp-content/uploads/2014/11/shutterstock_553171648.jpg",
       },
       {
         day: 2,
@@ -1055,7 +1055,7 @@ export const destinations = [
         destinationDesc:
           "Discover Viking history at the Viking Ship Museum. See well-preserved Viking ships and artifacts recovered from ancient burial mounds. Learn about Norway's seafaring past and the legendary Vikings.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/Norway/NOR-oslo-viking-ship-museum.jpg",
+          "https://i.ytimg.com/vi/WUcWiB0QKs4/maxresdefault.jpg",
       },
       {
         day: 3,
@@ -1063,7 +1063,7 @@ export const destinations = [
         destinationDesc:
           "Visit the Holmenkollen Ski Museum and Tower for a glimpse into Norwegian winter sports history. Explore exhibits on skiing and snowboarding, and enjoy panoramic views of Oslo from the observation deck.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/Norway/NOR-oslo-holmenkollen-ski-museum.jpg",
+          "https://tellusdmsmedia.newmindmedia.com/wsimgs/92222DA01E135DC95D1714766638F8FD3EE0220F.jpg",
       },
       {
         day: 4,
@@ -1071,7 +1071,7 @@ export const destinations = [
         destinationDesc:
           "Explore Akershus Fortress, a medieval castle and fortress located by the Oslo Fjord. Learn about its rich history as a defensive stronghold and government seat. Enjoy scenic views of the city and fjord from its ramparts.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/Norway/NOR-oslo-akershus-fortress.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/OSLO-NO-02_05_ubt.jpeg",
       },
       {
         day: 5,
@@ -1079,7 +1079,7 @@ export const destinations = [
         destinationDesc:
           "Visit the Oslo Opera House, an architectural masterpiece and cultural hub. Walk on its sloping roof for panoramic city views. Attend a ballet or opera performance, immersing yourself in Oslo's vibrant arts scene.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/Norway/NOR-oslo-opera-house.jpg",
+          "https://images.adsttc.com/media/images/500e/bd06/28ba/0d0c/c700/0111/newsletter/stringio.jpg?1413951962",
       },
     ],
     travelStyle: [
@@ -1096,7 +1096,8 @@ export const destinations = [
     overview:
       "Embark on an extraordinary adventure in the magical city of Reykjavik, Iceland. Explore otherworldly landscapes, witness stunning natural phenomena like the Northern Lights, indulge in Icelandic cuisine, and experience the unique culture of this enchanting Nordic capital.",
     country: "Iceland",
-    imgURL: "https://www.planetware.com/photos-large/ISL/iceland-reykjavik.jpg",
+    imgURL:
+      "https://cdn.britannica.com/71/73371-050-9DFAEC1E/Reykjavik-Iceland.jpg",
     cityRestaurant: [
       {
         id: 1,
@@ -1120,7 +1121,7 @@ export const destinations = [
         destinationDesc:
           "Relax in the geothermal waters of the Blue Lagoon, a famous spa and hot spring. Enjoy the mineral-rich waters amid a surreal volcanic landscape. Pamper yourself with spa treatments while surrounded by Iceland's natural beauty.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/ISL/iceland-blue-lagoon.jpg",
+          "https://media-cdn.tripadvisor.com/media/photo-s/12/4f/e1/b6/blue-lagoon.jpg",
       },
       {
         day: 2,
@@ -1128,7 +1129,7 @@ export const destinations = [
         destinationDesc:
           "Embark on the Golden Circle tour, a popular route that covers Þingvellir National Park, Geysir Geothermal Area, and Gullfoss Waterfall. Witness geysers erupting, walk between tectonic plates, and marvel at a powerful waterfall.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/ISL/iceland-golden-circle.jpg",
+          "https://www.findingtheuniverse.com/wp-content/uploads/2018/08/Rainbow-over-Gulfoss-Iceland_by_Laurence-Norah.jpg",
       },
       {
         day: 3,
@@ -1136,7 +1137,7 @@ export const destinations = [
         destinationDesc:
           "Chase the elusive Northern Lights, a natural light display in the Arctic skies. Join a guided tour to increase your chances of witnessing this captivating phenomenon. Be enchanted by the dancing lights in various colors.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/ISL/iceland-northern-lights.jpg",
+          "https://www.kiwi.com/stories/wp-content/uploads/2021/10/best-places-northern-lights-thingvellir-reykjavik-iceland-some.jpg",
       },
       {
         day: 4,
@@ -1144,7 +1145,7 @@ export const destinations = [
         destinationDesc:
           "Visit Harpa Concert Hall, a striking glass building and cultural landmark. Attend a concert or performance, and admire the modern architecture reflecting Iceland's volcanic landscapes. Take in views of Reykjavik's harbor from the venue.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/ISL/iceland-reykjavik-harpa-concert-hall.jpg",
+          "https://upload.wikimedia.org/wikipedia/en/2/20/Harpa.JPG",
       },
       {
         day: 5,
@@ -1152,7 +1153,7 @@ export const destinations = [
         destinationDesc:
           "Embark on a whale watching tour from Reykjavik's harbor. Get a chance to see majestic whales, dolphins, and other marine life in the North Atlantic Ocean. Experience the thrill of encountering these magnificent creatures in their natural habitat.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/ISL/iceland-whale-watching.jpg",
+          "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6f/5d/d4.jpg",
       },
     ],
     travelStyle: [
@@ -1170,7 +1171,7 @@ export const destinations = [
       "Embark on an exciting adventure in the dynamic city of Seoul, South Korea. Explore modern architecture, delve into ancient traditions, savor Korean cuisine, and experience the vibrant K-pop and entertainment scene of this bustling Asian metropolis.",
     country: "South Korea",
     imgURL:
-      "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-gyeongbokgung-palace.jpg",
+      "https://www.wapititravel.com/blog/wp-content/uploads/2019/07/Seoul_South_Korea.jpg.webp",
     cityRestaurant: [
       {
         id: 1,
@@ -1194,7 +1195,7 @@ export const destinations = [
         destinationDesc:
           "Explore Gyeongbokgung Palace, a grand royal palace with beautiful gardens. Witness the Changing of the Guard ceremony and learn about Korea's rich history and royal heritage. Admire the traditional architecture and iconic Geunjeongjeon Hall.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-gyeongbokgung-palace.jpg",
+          "https://www.korea.net/upload/content/editImage/20230329144152690_2V3S9BMD.jpg",
       },
       {
         day: 2,
@@ -1202,7 +1203,7 @@ export const destinations = [
         destinationDesc:
           "Visit N Seoul Tower, an iconic landmark offering panoramic views of Seoul. Take a cable car ride or hike up Namsan Mountain to reach the tower. Enjoy stunning cityscape views and capture memorable photos.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-n-seoul-tower.jpg",
+          "https://www.agoda.com/wp-content/uploads/2019/03/N-Seoul-Tower-N-Seoul-Tower-in-Autumn.jpg",
       },
       {
         day: 3,
@@ -1210,7 +1211,7 @@ export const destinations = [
         destinationDesc:
           "Explore Insadong, a cultural district known for its traditional arts and crafts. Stroll along lively streets lined with galleries, tea houses, and souvenir shops. Experience Korean calligraphy, pottery, and more.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-insadong.jpg",
+          "https://static.wixstatic.com/media/0505b9_e0e8b87de5644f53968ad29b7a953042~mv2.jpg/v1/fill/w_640,h_416,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/0505b9_e0e8b87de5644f53968ad29b7a953042~mv2.jpg",
       },
       {
         day: 4,
@@ -1218,7 +1219,7 @@ export const destinations = [
         destinationDesc:
           "Experience the youthful energy of Hongdae District, a trendy area famous for its urban art, indie music, and fashion. Explore unique shops, street performances, and enjoy a vibrant nightlife.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-hongdae.jpg",
+          "https://preparetravelplans.com/wp-content/uploads/2018/02/Hongdae-Shopping-Street-HS.jpg",
       },
       {
         day: 5,
@@ -1226,7 +1227,7 @@ export const destinations = [
         destinationDesc:
           "Relax by the Han River at one of the parks along its banks. Rent a bike or have a picnic with a view of the city skyline. Join locals in outdoor activities and appreciate the beauty of this iconic river.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/SKOR/south-korea-seoul-han-river-park.jpg",
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/52/99/fc/part-of-the-park-along.jpg?w=1200&h=-1&s=1",
       },
     ],
     travelStyle: [
@@ -1243,7 +1244,8 @@ export const destinations = [
     overview:
       "Embark on an adventurous journey in the enchanting region of North East India. Explore misty mountains, lush green valleys, and experience the rich cultural heritage of diverse tribes. Immerse yourself in the natural beauty and serenity of this unexplored gem of India.",
     country: "India",
-    imgURL: "https://www.planetware.com/photos-large/IN/india-northeast.jpg",
+    imgURL:
+      "https://www.lostwithpurpose.com/wp-content/uploads/2017/08/DSC04257.jpg",
     regionRestaurant: [
       {
         id: 1,
@@ -1267,7 +1269,7 @@ export const destinations = [
         destinationDesc:
           "Explore Kaziranga National Park, a UNESCO World Heritage Site and home to the one-horned rhinoceros. Embark on an exhilarating wildlife safari to spot rhinos, elephants, tigers, and various bird species.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/IN/india-assam-kaziranga-national-park.jpg",
+          "https://newslivetv.com/wp-content/uploads/2022/08/Assam-Kaziranga-National-Park-Conferred-with-%E2%80%98Best-Wildlife-Destination-in-India.jpg",
       },
       {
         day: 2,
@@ -1275,7 +1277,7 @@ export const destinations = [
         destinationDesc:
           "Visit Gangtok, the capital city of Sikkim, and immerse yourself in its charming ambiance. Explore local markets, visit monasteries, and enjoy panoramic views of the Himalayan range.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/IN/india-sikkim-gangtok.jpg",
+          "https://www.esikkimtourism.in/wp-content/uploads/2019/04/3rd-image.jpg",
       },
       {
         day: 3,
@@ -1283,7 +1285,7 @@ export const destinations = [
         destinationDesc:
           "Experience the wettest place on earth, Cherrapunji, known for its lush landscapes and stunning waterfalls. Explore the Living Root Bridges and enjoy breathtaking views of the valleys.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/IN/india-meghalaya-cherrapunjee-living-root-bridge.jpg",
+          "https://www.thatgoangirl.com/wp-content/uploads/2022/11/Best-blog-Cherrapunji.jpg",
       },
       {
         day: 4,
@@ -1291,7 +1293,7 @@ export const destinations = [
         destinationDesc:
           "Visit the majestic Tawang Monastery in Arunachal Pradesh, one of the largest Buddhist monasteries in the world. Admire its intricate architecture and serene surroundings.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/IN/india-arunachal-pradesh-tawang-monastery.jpg",
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/43/cf/85/monastery-view-from-city.jpg?w=1200&h=-1&s=1",
       },
       {
         day: 5,
@@ -1299,7 +1301,7 @@ export const destinations = [
         destinationDesc:
           "Explore Majuli, the world's largest river island, known for its unique cultural heritage and traditional arts. Experience the simplicity of life and witness the Satras, the Vaishnavite monasteries.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/IN/india-assam-majuli-island.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Doriya_River_of_Majuli.jpg/1200px-Doriya_River_of_Majuli.jpg",
       },
     ],
     travelStyle: [
