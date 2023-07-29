@@ -5,10 +5,17 @@ export const StyledSection = styled("section")(
   height: 100vh;
   position: relative;
   overflow: hidden;
+
   p.place{
     font-family: sans-serif;
     font-size:13px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    white-space: pre-wrap; 
   }
+
   p{
     margin-bottom:30px;
   }
@@ -23,7 +30,6 @@ export const StyledSection = styled("section")(
   }
 
   .day-details{
-    padding-top:10px;
     font-family: "Agdasima", sans-serif;
     font-size: 20px;
     h3{
@@ -41,9 +47,14 @@ export const StyledSection = styled("section")(
       height: 200px;
       width: -webkit-fill-available;
     }
+    img.weatherIcon{
+      width: 50px;
+      height: auto;
+      margin-bottom:5px;
+    }
     .title {
       position: absolute;
-      bottom: 24px;
+      bottom: 29px;
       left: 24px;
     }
   }
