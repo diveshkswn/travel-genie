@@ -84,8 +84,8 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
           textAlign: "center",
         }}
       >
-        <h1>Select Activities</h1>
-        <p>Activities that you might want to do:- </p>
+        <h1>Travel Preferences</h1>
+        <p>Uncover Your Ideal Travel Style</p>
       </div>
       <StyledContainer>
         {activities.map((activity) => (

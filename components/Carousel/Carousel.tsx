@@ -51,7 +51,7 @@ export function Carousel(props: CarouselProps) {
             </li>
             <li className="glide__slide">
               <div className="img-gradient">
-                <img src="https://media.istockphoto.com/id/1135820309/photo/amber-fort-and-maota-lake-jaipur-rajasthan-india.jpg?s=2048x2048&w=is&k=20&c=Y65U6Irmz_G8qtReqCF-u_e-BGXR1z_qj3B8Clr73F8=" />
+                <img src="https://images.pexels.com/photos/2870167/pexels-photo-2870167.jpeg?auto=compress&cs=tinysrgb&w=800" />
               </div>
               <div className="content">
                 <h1>Jaipur</h1>
