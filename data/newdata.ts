@@ -931,7 +931,7 @@ export const destinations = [
         destinationDesc:
           "Take a day trip to the opulent Palace of Versailles, a UNESCO World Heritage site. Explore the grand halls, ornate chambers, and beautifully landscaped gardens of this former royal residence.",
         destinationImgUrl:
-          "https://www.planetware.com/photos-large/F/france-versailles-palace.jpg",
+          "https://a.cdn-hotels.com/gdcs/production173/d887/4ed9f247-792c-416d-8ddf-0049ae3059a1.jpg",
       },
     ],
     travelStyle: [
