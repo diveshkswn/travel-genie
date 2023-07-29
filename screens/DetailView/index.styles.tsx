@@ -61,7 +61,7 @@ export const StyledSection = styled("section")(
 
     .img-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 150px;
       grid-column-gap: 16px;
       padding-bottom: 16px;
   
@@ -74,9 +74,12 @@ export const StyledSection = styled("section")(
 
   }
 
-  .btn {
+  .search {
     position: absolute;
-    bottom: 24px;
+    bottom: 0;
+    background: ${theme.body};
+    padding: 32px 16px;
+    margin-bottom: 0;
   }
 `
 );

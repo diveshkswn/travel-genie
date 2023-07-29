@@ -17,12 +17,14 @@ export const StyledTabs = styled("ul")(
     padding: 8px 0;
     margin-right: 16px;
     cursor: pointer;
+    color: ${theme.colors.secondaryColor};
 
     &:focus, &:hover {
         color: ${theme.colors.primaryColor} !important;
     }
 
     &.selected {
+        color: ${theme.colors.primaryColor} !important;
         border-bottom: 2px solid ${theme.colors.primaryColor};
     }
   }

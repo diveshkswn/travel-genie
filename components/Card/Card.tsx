@@ -4,12 +4,13 @@ import { CardProps } from "./index.types";
 import { StyledCard } from "./index.styles";
 
 const Card = (props: CardProps) => {
-  const { city, country, url, isVertical = false, handleCardClick, overview } = props;
+  const { isVertical = false, handleCardClick, ...rest } = props;
+  const { city, country, url } = rest;
 
   return (
     <StyledCard
       className={`secondary-bg ${isVertical ? "vertical-view" : ""}`}
-      onClick={() => handleCardClick({city, country, overview, url})}
+      onClick={() => handleCardClick(rest)}
     >
       <img src={url} alt={city} />
       <div className="d-flex flex-column">
