@@ -6,6 +6,7 @@ export const StyledCard = styled("section")`
   margin-right: 8px;
   display: flex;
   height: 130px;
+  max-width: 70%;
 
   div {
     padding: 12px;
