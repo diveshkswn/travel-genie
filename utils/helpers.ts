@@ -104,9 +104,25 @@ export const getLangChainData = async (
   const parsedRes = await res.json();
   console.log("parsedRed", parsedRes);
   return parsedRes;
-  // const content = parsedRes?.data?.messages?.[2]?.content || "";
-  // const startIndex = content.indexOf("[");
-  // const endIndex = content.lastIndexOf("]");
-
-  // return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]");
 };
+
+export const getPopularDestinations = (data: any, size = 5) => {
+  const shuffled = data.slice();
+  let currentIndex = shuffled.length;
+  let temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // Swap it with the current element.
+    temporaryValue = shuffled[currentIndex];
+    shuffled[currentIndex] = shuffled[randomIndex];
+    shuffled[randomIndex] = temporaryValue;
+  }
+
+  // Return the first 'size' elements of the shuffled array.
+  return shuffled.slice(0, size);
+}

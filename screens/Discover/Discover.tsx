@@ -75,13 +75,8 @@ export function Discover(props: DiscoverProps) {
       if (itinerayPropmt) {
         prompt = itinerayPropmt;
       } else {
-        const selectedActivities: string[] = JSON.parse(
-          sessionStorage.getItem("selectedActivities") || "[]"
-        );
-        prompt = ITINERAY_PROMPT.replace(
-          "{selectedActivities}",
-          selectedActivities.join(" ")
-        );
+        const selectedActivities: string[] = JSON.parse(sessionStorage.getItem("selectedActivities") || "[]");
+        prompt = ITINERAY_PROMPT.replace("{selectedActivities}",selectedActivities.join(" "));
         prompt = prompt.replace("{num_of_days}", "3");
         prompt = prompt.replace("{city}", city);
       }
@@ -90,9 +85,9 @@ export function Discover(props: DiscoverProps) {
       const locationData = city
         ? cardData
         : {
-            city: itinerayData?.[0]?.["Day1"]?.cityName,
-            overview: itinerayData?.[0]?.["Day1"]?.cityOverview,
-            country: itinerayData?.[0]?.["Day1"]?.country,
+            city: itinerayData?.[0]?.cityName,
+            overview: itinerayData?.[0]?.cityOverview,
+            country: itinerayData?.[0]?.country,
             url: "https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80",
           };
       const data = [...recentData, { ...locationData, itinerayData }];

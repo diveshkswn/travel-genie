@@ -203,57 +203,6 @@ export const destinations = [
     ],
   },
   {
-    id: "london_789",
-    city: "London",
-    overview:
-      "Experience the vibrant nightlife of London, a city known for its diverse entertainment options, historic pubs, and lively atmosphere. Explore iconic landmarks and indulge in exciting nighttime activities.",
-    country: "United Kingdom",
-    imgURL:
-      "https://secretldn.com/wp-content/uploads/2022/01/shutterstock_533946907-2-1024x683.jpg",
-    cityRestaurant: [
-      {
-        id: 1,
-        restaurantName: "The Pub Hub",
-        restaurantDesc:
-          "Experience the quintessential British pub culture at The Pub Hub. Sample a selection of ales and ciders, mingle with locals, and enjoy hearty pub food. The cozy ambience and live music add to the charm of this traditional pub.",
-        costFor2: 60,
-      },
-      {
-        id: 2,
-        restaurantName: "Fusion Bites",
-        restaurantDesc:
-          "Treat your taste buds to a fusion of international flavors at Fusion Bites. This trendy restaurant offers a diverse menu of global cuisines, from Asian delicacies to European favorites. The contemporary decor and vibrant vibe make it an ideal spot for a lively dinner.",
-        costFor2: 80,
-      },
-    ],
-    itinerary: [
-      {
-        day: 1,
-        destination: "West End Theatres",
-        destinationDesc:
-          "Start your nightlife journey with a visit to London's West End, known for its world-class theatres and captivating performances. Immerse yourself in the magic of a Broadway-quality show or a classic play. The dazzling lights and artistic talent create an unforgettable experience.",
-        destinationImgUrl:
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/theater-736876_1280.jpg",
-      },
-      {
-        day: 2,
-        destination: "Covent Garden",
-        destinationDesc:
-          "Explore the vibrant atmosphere of Covent Garden, filled with street performers, bustling markets, and lively pubs. Enjoy live music and entertainment at various venues, or simply take a leisurely stroll through the cobbled streets and soak in the energetic ambiance.",
-        destinationImgUrl:
-          "https://jubileemarket.co.uk/wp-content/uploads/2023/05/optimized-image.jpg",
-      },
-      {
-        day: 3,
-        destination: "Thames River Cruise",
-        destinationDesc:
-          "Embark on a mesmerizing Thames River Cruise under the twinkling city lights. Admire iconic landmarks like the Tower Bridge, the London Eye, and the Houses of Parliament illuminated in all their glory. Toast to the unforgettable night as you sail along the iconic river.",
-        destinationImgUrl:
-          "https://www.virginexperiencedays.co.uk/content/img/product/large/family-thames-cruise-sightseeing-04163106.jpg",
-      },
-    ],
-  },
-  {
     id: "india_nature_trek_789",
     city: "Manali",
     overview:

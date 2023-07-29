@@ -6,7 +6,10 @@ export interface DetailViewProps {
 }
 
 export interface ItinerayProps {
-    [key: string]: {
-        travelLocation: string;
-    }
+    day: number;
+    destination: string;
+    cityName: string;
+    country: string;
+    cityOverview: string;
+    destinationDesc: string;
 }

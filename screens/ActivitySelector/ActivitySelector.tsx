@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { getData, getLangChainData } from "@/utils/helpers";
+import { getLangChainData, getPopularDestinations } from "@/utils/helpers";
 import { ActivityItem } from "./ActivityItem/ActivityItem";
 import { StyledContainer } from "./index.styles";
 import { constants } from "@/utils/constants";
@@ -15,13 +15,10 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
-  const { POPULAR_DESTINATION_PROMPT, RECOMMENDED_DESTINATION_PROMPT } =
-    constants;
+  const { RECOMMENDED_DESTINATION_PROMPT } = constants;
 
   useEffect(() => {
-    const data: string[] = JSON.parse(
-      sessionStorage.getItem("selectedActivities") || "[]"
-    );
+    const data: string[] = JSON.parse(sessionStorage.getItem("selectedActivities") || "[]");
     setSelectedActivities(data);
   }, []);
 
@@ -37,31 +34,19 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
 
   const handleSaveClick = async () => {
     setIsLoading(true);
-    const prompt = RECOMMENDED_DESTINATION_PROMPT.replace(
-      "{selectedActivities}",
-      selectedActivities.join(" ")
-    );
+    const prompt = RECOMMENDED_DESTINATION_PROMPT.replace("{selectedActivities}",selectedActivities.join(" "));
 
-    // const recommendedDestination = await getData(prompt);
     const recommendedDestination = await getLangChainData(prompt, 3);
 
-    const popularDestination = destinations;
+    const popularDestination = getPopularDestinations(destinations);
 
-    sessionStorage.setItem(
-      "selectedActivities",
-      JSON.stringify(selectedActivities)
-    );
+    sessionStorage.setItem("selectedActivities",JSON.stringify(selectedActivities));
+
     if (popularDestination.length) {
-      sessionStorage.setItem(
-        "popularDestination",
-        JSON.stringify(popularDestination)
-      );
+      sessionStorage.setItem("popularDestination",JSON.stringify(popularDestination));
     }
     if (recommendedDestination?.length) {
-      sessionStorage.setItem(
-        "recommendedDestination",
-        JSON.stringify(recommendedDestination)
-      );
+      sessionStorage.setItem("recommendedDestination",JSON.stringify(recommendedDestination));
     }
 
     router.push("discover");
