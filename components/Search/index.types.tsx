@@ -4,4 +4,6 @@ export interface PropsTypes {
     className?: string;
     type?: string;
     required?: boolean;
+    prompt?: string;
+    searchClassName?: string;
 }

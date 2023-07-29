@@ -1,12 +1,19 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
+
+import Search from "@/components/Search/Search";
+import Loader from "@/components/Loader/Loader";
+import { getData } from "@/utils/helpers";
+import { constants } from "@/utils/constants";
 
 import { DetailViewProps,ItinerayProps } from "./index.types";
 import { StyledSection } from "./index.styles";
-import Button from "@/components/Button/Button";
+
+const { UPDATE_SEARCH_PROMPT } = constants;
 
 const DetailView = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [detail, setDetail] = useState<DetailViewProps>();
   const [itinerayData, setItinerayData] = useState<ItinerayProps[]>([]);
 
@@ -18,17 +25,26 @@ const DetailView = () => {
     setItinerayData(itineray);
   }, []);
 
-  const { city, url, overview } = detail || {};
+  const { city, url, overview, chatId, useGPT = false } = detail || {}; 
+
+  const handleSearch = async (prompt: string) => {
+    setIsLoading(true);
+    console.log(chatId);
+    const {data: itinerayData} = await getData(`${prompt} for chat id ${chatId}`, chatId);
+    sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
+    setItinerayData(itinerayData);
+    setIsLoading(false);
+  };
 
   return (
     <StyledSection>
       <div className="img-container">
-        <img src={url} alt={city} />
-        <h2 className="title">{city}</h2>
+        <img src={url} alt={itinerayData[0]?.cityName || city} />
+        <h2 className="title">{itinerayData[0]?.cityName || city}</h2>
       </div>
       <div className="content-container">
         <span>Description</span>
-        <p className="secondary-fg pt-3">{overview}</p>
+        <p className="secondary-fg pt-3">{itinerayData[0]?.cityOverview || overview}</p>
         {itinerayData?.map((item, index) => {
           return (<div className="img-col" key={`itineray-${index}`}>
             <div>
@@ -36,15 +52,20 @@ const DetailView = () => {
               <h5 className="place">{item?.destination}</h5>
             </div>
             <img 
-              src={"https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"} 
+              src={item?.destinationImgUrl || "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"} 
               alt={item?.destination} 
             />
           </div>)
         })}
       </div>
-      <div className="d-flex justify-content-center align-items-center">
-        <Button text="Continue" handleClick={() => {}} className="btn" />
-      </div>
+      {useGPT && (
+        <Search 
+          searchClassName="search" 
+          handleSearch={(prompt: string) => handleSearch(prompt)} 
+          prompt={UPDATE_SEARCH_PROMPT}
+        />
+      )}
+      {isLoading && <Loader />}
     </StyledSection>
   );
 };

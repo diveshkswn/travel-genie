@@ -55,23 +55,15 @@ export function Discover(props: DiscoverProps) {
         {...item}
         isVertical={isVertical}
         handleCardClick={(params: Record<string, string>) =>
-          handleCardClick(params)
+          handleCardClick(params, '', false)
         }
       />
     );
   };
 
-  const handleCardClick = async (
-    cardData: Record<string, string>,
-    itinerayPropmt?: string
-  ) => {
-    const { city } = cardData;
-    const index = recentData.findIndex((item) => item.city === city);
-    let selectedIndex = index === -1 ? recentData.length : index;
-
-    if (index === -1) {
-      setIsLoading(true);
-      let prompt = "";
+  const getPrompt = (city: string, itinerayPropmt?: string, useGPT?: boolean) => {
+    let prompt = "";
+    if(useGPT) {
       if (itinerayPropmt) {
         prompt = itinerayPropmt;
       } else {
@@ -80,8 +72,23 @@ export function Discover(props: DiscoverProps) {
         prompt = prompt.replace("{num_of_days}", "3");
         prompt = prompt.replace("{city}", city);
       }
+    }
+    return prompt;
+  }
 
-      const itinerayData = await getData(prompt);
+  const handleCardClick = async (
+    cardData: Record<string, string>,
+    itinerayPropmt?: string,
+    useGPT?: boolean
+  ) => {
+    const { city = '' } = cardData;
+    const index = recentData.findIndex((item) => item.city === city);
+    let selectedIndex = index === -1 ? recentData.length : index;
+    if (index === -1) {
+      setIsLoading(true);
+      const prompt = getPrompt(city, itinerayPropmt, useGPT);
+
+      const {id, data: itinerayData} = useGPT ? await getData(prompt) : {id: '', data: cardData?.itinerary};
       const locationData = city
         ? cardData
         : {
@@ -90,7 +97,7 @@ export function Discover(props: DiscoverProps) {
             country: itinerayData?.[0]?.country,
             url: "https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80",
           };
-      const data = [...recentData, { ...locationData, itinerayData }];
+      const data = [...recentData, { ...locationData, itinerayData, chatId: id, useGPT }];
 
       if (data.length > 10) {
         data.shift(); // Remove the first element from the array
@@ -120,7 +127,7 @@ export function Discover(props: DiscoverProps) {
           </span>
         </div>
         <Search
-          handleSearch={(prompt: string) => handleCardClick({}, prompt)}
+          handleSearch={(prompt: string) => handleCardClick({}, prompt, true)}
         />
         <Tabs
           tabList={TAB_LIST}

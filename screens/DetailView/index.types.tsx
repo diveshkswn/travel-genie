@@ -3,6 +3,8 @@ export interface DetailViewProps {
     country: string;
     url: string;
     overview: string;
+    chatId?: string;
+    useGPT?: boolean;
 }
 
 export interface ItinerayProps {
@@ -12,4 +14,5 @@ export interface ItinerayProps {
     country: string;
     cityOverview: string;
     destinationDesc: string;
+    destinationImgUrl?: string;
 }

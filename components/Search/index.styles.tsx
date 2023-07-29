@@ -3,10 +3,10 @@ import { styled } from "styled-components";
 export const StyledSearch = styled("div")(
   ({ theme }) => `
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   margin-bottom: 16px;
+
   input {
     padding: 8px;
     border: none;
@@ -17,6 +17,10 @@ export const StyledSearch = styled("div")(
     &:focus-visible {
       outline: 1px solid ${theme.colors.secondaryColor}
     }
+  }
+
+  button {
+    margin-left: 16px;
   }
 `
 );

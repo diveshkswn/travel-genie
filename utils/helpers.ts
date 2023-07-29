@@ -61,7 +61,7 @@ export const handleLogin = ({
   setCookie(
     "tgAuth",
     JSON.stringify(authCookie),
-    Number(process.env.NEXT_PUBLIC_AUTH_TIMEOUT || "5")
+    Number(process.env.NEXT_PUBLIC_AUTH_TIMEOUT || "60")
   );
   localStorage.setItem("name", name);
   localStorage.setItem("email", email);
@@ -73,8 +73,8 @@ export const handleLogout = ({ callbackFn }: { callbackFn: () => any }) => {
   callbackFn?.();
 };
 
-export const getData = async (message: string) => {
-  const reqBody = { message };
+export const getData = async (message: string, chatId?: string) => {
+  const reqBody = { message, ...(chatId && { existingChatId: chatId })};
   const res = await fetch("/api/gpt", {
     method: "POST",
     body: JSON.stringify(reqBody),
@@ -82,11 +82,12 @@ export const getData = async (message: string) => {
 
   const parsedRes = await res.json();
 
-  const content = parsedRes?.data?.messages?.[2]?.content || "";
+  const index = parsedRes?.data?.messages?.length - 1;
+  const content = parsedRes?.data?.messages?.[index]?.content || "";
   const startIndex = content.indexOf("[");
   const endIndex = content.lastIndexOf("]");
 
-  return JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]");
+  return {id: parsedRes?.data?.id, data: JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]")};
 };
 
 export const getLangChainData = async (
