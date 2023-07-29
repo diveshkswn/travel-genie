@@ -11,7 +11,7 @@ import { constants } from "@/utils/constants";
 
 import { StyledSection } from "./index.styles";
 import { DestinationProps, DiscoverProps } from "./index.types";
-import { getData } from "@/utils/helpers";
+import { getData, searchImageAPI } from "@/utils/helpers";
 import Loader from "@/components/Loader/Loader";
 
 const { TAB_LIST, ITINERAY_PROMPT } = constants;
@@ -55,15 +55,19 @@ export function Discover(props: DiscoverProps) {
         {...item}
         isVertical={isVertical}
         handleCardClick={(params: Record<string, string>) =>
-          handleCardClick(params, '', false)
+          handleCardClick(params, "", false)
         }
       />
     );
   };
 
-  const getPrompt = (city: string, itinerayPropmt?: string, useGPT?: boolean) => {
+  const getPrompt = (
+    city: string,
+    itinerayPropmt?: string,
+    useGPT?: boolean
+  ) => {
     let prompt = "";
-    if(useGPT) {
+    if (useGPT) {
       if (itinerayPropmt) {
         prompt = itinerayPropmt;
       } else {
@@ -79,30 +83,61 @@ export function Discover(props: DiscoverProps) {
       }
     }
     return prompt;
-  }
+  };
 
   const handleCardClick = async (
     cardData: Record<string, string>,
     itinerayPropmt?: string,
     useGPT?: boolean
   ) => {
-    const { city = '' } = cardData;
+    const { city = "" } = cardData;
     const index = recentData.findIndex((item) => item.city === city);
     let selectedIndex = index === -1 ? recentData.length : index;
     if (index === -1) {
       setIsLoading(true);
       const prompt = getPrompt(city, itinerayPropmt, useGPT);
 
-      const {id, data: itinerayData} = useGPT ? await getData(prompt) : {id: '', data: cardData?.itinerary};
+      const { id, data: itinerayDataResponse } = useGPT
+        ? await getData(prompt)
+        : { id: "", data: cardData?.itinerary };
+
+      console.log("itinerayData", itinerayDataResponse);
+      let itinerayData = itinerayDataResponse;
+
+      if (useGPT) {
+        let tagNames =
+          itinerayData.map((itinery: any) => itinery?.destination) || [];
+        const { mainResponse, tagResponse } = await searchImageAPI(
+          itinerayData?.[0]?.cityName,
+          tagNames
+        );
+
+        let newItinerayData = itinerayData.map((_i: any) => {
+          if (Object.keys(tagResponse).includes(_i?.destination)) {
+            return {
+              ..._i,
+              cityImageURL: mainResponse,
+              destinationImgUrl: tagResponse[_i?.destination],
+            };
+          }
+          return { ..._i, cityImageURL: mainResponse };
+        });
+        itinerayData = newItinerayData;
+      }
+      console.log("itinerayData new:::", itinerayData);
+
       const locationData = city
         ? cardData
         : {
             city: itinerayData?.[0]?.cityName,
             overview: itinerayData?.[0]?.cityOverview,
             country: itinerayData?.[0]?.country,
-            url: "https://images.unsplash.com/photo-1607406374368-809f8ec7f118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2346&q=80",
+            url: itinerayData?.[0]?.cityImageURL,
           };
-      const data = [...recentData, { ...locationData, itinerayData, chatId: id, useGPT }];
+      const data = [
+        ...recentData,
+        { ...locationData, itinerayData, chatId: id, useGPT },
+      ];
 
       if (data.length > 10) {
         data.shift(); // Remove the first element from the array

@@ -4,7 +4,7 @@ import { memo, useCallback, useEffect, useState } from "react";
 
 import Search from "@/components/Search/Search";
 import Loader from "@/components/Loader/Loader";
-import { getData } from "@/utils/helpers";
+import { getData, searchImageAPI } from "@/utils/helpers";
 import { constants } from "@/utils/constants";
 
 import { DetailViewProps, ItinerayProps } from "./index.types";
@@ -31,15 +31,40 @@ const DetailView = () => {
     setItinerayData(itineray);
   }, []);
 
-  const { city, url, overview, chatId, useGPT = false } = detail || {}; 
+  const { city, url, overview, chatId, useGPT = false } = detail || {};
 
-  const handleSearch = async (prompt: string) => {
+  const handleSearch = async (prompt: string, setSearchData: any) => {
     setIsLoading(true);
     console.log(chatId);
-    const {data} = await getData(`${prompt} for chat id ${chatId} with default ${itinerayData?.[0]?.cityName} city if not mentioned in this prompt`, chatId);
-    sessionStorage.setItem("itinerayData", JSON.stringify(data));
-    setItinerayData(data);
+    const { data } = await getData(
+      `${prompt} for chat id ${chatId} with default ${itinerayData?.[0]?.cityName} city if not mentioned in this prompt`,
+      chatId
+    );
+    console.log("data", data);
+
+    let tagNames = data.map((itinery: any) => itinery?.destination) || [];
+
+    const { mainResponse, tagResponse } = await searchImageAPI(
+      itinerayData?.[0]?.cityName,
+      tagNames
+    );
+    let newItinerayData = data?.map((_i: any) => {
+      if (Object.keys(tagResponse).includes(_i?.destination)) {
+        return {
+          ..._i,
+          cityImageURL: mainResponse,
+          destinationImgUrl: tagResponse[_i?.destination],
+        };
+      }
+      return { ..._i, cityImageURL: mainResponse };
+    });
+
+    sessionStorage.setItem("itinerayData", JSON.stringify(newItinerayData));
+    setItinerayData(newItinerayData);
     setIsLoading(false);
+    setTimeout(() => {
+      setSearchData?.("");
+    }, 500);
   };
 
   return (
@@ -50,7 +75,9 @@ const DetailView = () => {
       </div>
       <div className="content-container">
         <span>Description</span>
-        <p className="secondary-fg pt-3">{itinerayData[0]?.cityOverview || overview}</p>
+        <p className="secondary-fg pt-3">
+          {itinerayData[0]?.cityOverview || overview}
+        </p>
         {itinerayData?.map((item, index) => {
           return (
             <div className="img-col" key={`itineray-${index}`}>
@@ -61,7 +88,8 @@ const DetailView = () => {
               </div>
               <img
                 src={
-                  item?.destinationImgUrl || "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"
+                  item?.destinationImgUrl ||
+                  "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"
                 }
                 alt={item?.destination}
               />
@@ -70,9 +98,12 @@ const DetailView = () => {
         })}
       </div>
       {useGPT && (
-        <Search 
-          searchClassName="search" 
-          handleSearch={(prompt: string) => handleSearch(prompt)} 
+        <Search
+          searchClassName="search"
+          handleSearch={(prompt: string, setSearchData) => {
+            console.log("setSearchData", setSearchData);
+            handleSearch(prompt, setSearchData);
+          }}
           prompt={UPDATE_SEARCH_PROMPT}
         />
       )}

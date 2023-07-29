@@ -3,7 +3,7 @@
 import { handleLogin } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import { memo, useRef } from "react";
-import { SearchComponent } from "../Search";
+import { Search } from "../Search/Search";
 import Button from "../Button/Button";
 
 export function EmailNameAuth() {
@@ -22,13 +22,19 @@ export function EmailNameAuth() {
   };
   return (
     <>
-    <form onSubmit={login}>
-      <SearchComponent required placeholder="Name" className="w-100"/>
-      <SearchComponent required placeholder="Email" type="email" className="w-100"/>
-      {/* <input type="text" name="name" ref={nameRef} />
+      <form onSubmit={login}>
+        <Search required placeholder="Name" className="w-100" ref={nameRef} />
+        <Search
+          required
+          placeholder="Email"
+          type="email"
+          className="w-100"
+          ref={emailRef}
+        />
+        {/* <input type="text" name="name" ref={nameRef} />
       <input type="email" name="email" ref={emailRef} /> */}
-      <Button type="submit" text="Login"/>
-    </form>
+        <Button type="submit" text="Login" />
+      </form>
     </>
   );
 }

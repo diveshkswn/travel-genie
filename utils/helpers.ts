@@ -74,7 +74,7 @@ export const handleLogout = ({ callbackFn }: { callbackFn: () => any }) => {
 };
 
 export const getData = async (message: string, chatId?: string) => {
-  const reqBody = { message, ...(chatId && { existingChatId: chatId })};
+  const reqBody = { message, ...(chatId && { existingChatId: chatId }) };
   const res = await fetch("/api/gpt", {
     method: "POST",
     body: JSON.stringify(reqBody),
@@ -87,7 +87,10 @@ export const getData = async (message: string, chatId?: string) => {
   const startIndex = content.indexOf("[");
   const endIndex = content.lastIndexOf("]");
 
-  return {id: parsedRes?.data?.id, data: JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]")};
+  return {
+    id: parsedRes?.data?.id,
+    data: JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]"),
+  };
 };
 
 export const getLangChainData = async (
@@ -126,4 +129,70 @@ export const getPopularDestinations = (data: any, size = 5) => {
 
   // Return the first 'size' elements of the shuffled array.
   return shuffled.slice(0, size);
+};
+
+interface SearchImageprops {
+  mainResponse: string;
+  tagResponse: Record<any, any>;
+}
+export const searchImage = async (
+  search = "random",
+  tagNames?: string[]
+): Promise<SearchImageprops> => {
+  let tagResponse: Record<any, any> = {};
+  let url = `${process.env.NEXT_PUBLIC_PIXABAY_URL}`;
+  url = url.replace("{queryName}", search);
+  const res = await fetch(url, {
+    headers: { "content-type": "application/json" },
+    mode: "no-cors",
+  });
+  console.log("url", url);
+  const parsedRes = await res.json();
+  let imageUrl = parsedRes?.hits?.[0]?.webformatURL;
+  // response.push({ mainSearch: imageUrl });
+  let mainResponse = imageUrl;
+
+  if (tagNames?.length) {
+    for (let i = 0; i < tagNames.length; i++) {
+      let tagName = tagNames[i];
+      console.log("tagName", tagName);
+
+      for (let x = 0; x < parsedRes?.hits?.length; x++) {
+        let hit = parsedRes?.hits?.[x];
+        if (hit.tags && tagName) {
+          if (hit?.tags?.includes(tagName?.toLowerCase())) {
+            console.log(" hit?.tags?", hit?.tags, tagName);
+            tagResponse = {
+              ...tagResponse,
+              ...{ [tagName]: hit?.webformatURL },
+            };
+            break;
+          } else {
+            tagResponse = {
+              ...tagResponse,
+              ...{ [tagName]: parsedRes?.hits?.[0]?.webformatURL },
+            };
+          }
+        }
+      }
+    }
+  }
+  return { mainResponse, tagResponse };
+};
+
+export const searchImageAPI = async (
+  search = "random",
+  tagNames?: string[]
+): Promise<SearchImageprops> => {
+  const reqBody = { search, tags: tagNames?.join(",") };
+
+  const res = await fetch(`/api/searchImage`, {
+    headers: { "content-type": "application/json" },
+    method: "POST",
+    body: JSON.stringify(reqBody),
+  });
+
+  const parsedRes = await res.json();
+  console.log("parsedRed", parsedRes);
+  return parsedRes;
 };
