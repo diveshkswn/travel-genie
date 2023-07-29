@@ -22,8 +22,8 @@ export function EmailNameAuth() {
   };
   return (
     <>
-      <SearchComponent placeholder="Name" />
-      <SearchComponent placeholder="Email" />
+      <SearchComponent placeholder="Name" className="w-100"/>
+      <SearchComponent placeholder="Email" className="w-100"/>
       {/* <input type="text" name="name" ref={nameRef} />
       <input type="email" name="email" ref={emailRef} /> */}
       <Button type="submit" text="Login" handleClick={login}/>
