@@ -5,7 +5,9 @@ export const StyledSection = styled("section")(
   height: 100vh;
   position: relative;
   overflow: hidden;
-
+  p{
+    margin-bottom:30px;
+  }
   h2{
     font-family: 'Bebas Neue', sans-serif;
     font-size:55px;
@@ -17,8 +19,7 @@ export const StyledSection = styled("section")(
   }
 
   .day-details{
-    padding-top:35px;
-    padding-left:20px;
+    padding-top:10px;
     font-family: "Agdasima", sans-serif;
     font-size: 20px;
     h3{
@@ -61,8 +62,8 @@ export const StyledSection = styled("section")(
       padding-bottom: 16px;
   
       img {
-        height: 150px !important;
-        width: 150px;
+        height: auto;
+        width: 180px;
         border-radius: 14px;
       }
     }
