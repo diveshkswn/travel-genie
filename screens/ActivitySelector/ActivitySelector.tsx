@@ -3,7 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { getLangChainData, getPopularDestinations } from "@/utils/helpers";
+import {
+  getLangChainData,
+  getPopularDestinations,
+  setCookie,
+} from "@/utils/helpers";
 import { ActivityItem } from "./ActivityItem/ActivityItem";
 import { StyledContainer, ActivityContainer } from "./index.styles";
 import { constants } from "@/utils/constants";
@@ -35,15 +39,23 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   };
 
   const handleSaveClick = async () => {
+    const location = JSON.parse(sessionStorage.getItem("locationInfo") || "{}");
     setIsLoading(true);
     const prompt = RECOMMENDED_DESTINATION_PROMPT.replace(
       "{selectedActivities}",
       selectedActivities.join(" ")
     );
+    const popularDestinationPrompt = RECOMMENDED_DESTINATION_PROMPT.replace(
+      "{selectedActivities}",
+      ""
+    ).concat(`country ${location?.country_name}`);
 
     const recommendedDestination = await getLangChainData(prompt, 3);
 
-    const popularDestination = getPopularDestinations(destinations);
+    const popularDestination = await getLangChainData(
+      popularDestinationPrompt,
+      5
+    );
 
     sessionStorage.setItem(
       "selectedActivities",
@@ -61,6 +73,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
         "recommendedDestination",
         JSON.stringify(recommendedDestination)
       );
+      setCookie("recommendedDestination", true);
     }
 
     router.push("discover");
