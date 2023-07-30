@@ -92,5 +92,9 @@ export const StyledSection = styled("section")(
     padding: 32px 16px;
     margin-bottom: 0;
   }
+
+  .img-col {
+    cursor: pointer;
+  }
 `
 );

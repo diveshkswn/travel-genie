@@ -10,10 +10,12 @@ import { constants } from "@/utils/constants";
 
 import { DetailViewProps, ItinerayProps } from "./index.types";
 import { StyledSection } from "./index.styles";
+import { useRouter } from "next/navigation";
 
 const { UPDATE_SEARCH_PROMPT } = constants;
 
 const DetailView = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showWeather, showHideWeather] = useState(false);
   const [detail, setDetail] = useState<DetailViewProps>();
@@ -35,6 +37,11 @@ const DetailView = () => {
   }, []);
 
   const { city, url, overview, chatId, useGPT = false } = detail || {};
+
+  const navigateToDayItinerary = (index: number) => {
+    sessionStorage.setItem("selectedDayIndex", JSON.stringify(index));
+    router.push("dayItinerary");
+  }
 
   const handleSearch = async (prompt: string, setSearchData: any) => {
     setIsLoading(true);
@@ -88,7 +95,7 @@ const DetailView = () => {
         </p>
         {itinerayData?.map((item, index) => {
           return (
-            <div className="img-col" key={`itineray-${index}`}>
+            <div className="img-col" key={`itineray-${index}`} onClick={() => navigateToDayItinerary(index)}>
               <div className="day-details">
                 <h3 className="date">Day {item.day}</h3>
                 <h5 className="place">{item?.destination}</h5>
