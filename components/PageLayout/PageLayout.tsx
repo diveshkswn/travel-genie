@@ -7,7 +7,7 @@ import momentjs from "moment";
 import { getData } from "@/utils/helpers";
 
 const themeMap = {
-  lightTheme, darkTheme, nightLifeTheme, rainyDay,snowyTheme
+  lightTheme, darkTheme, nightLifeTheme, rainyDay, snowyTheme
 };
 
 const fetchData = async (DestiName: string) => {
@@ -32,7 +32,14 @@ function PageLayout({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<"darkTheme" | "lightTheme" | "nightLifeTheme" | "rainyDay" | "snowyTheme">("darkTheme");
   useEffect(() => {
     const asyncFunction = async() => {
-      const locationInfo = JSON.parse(sessionStorage.getItem('locationInfo') || '{}');
+      const locationInfo = await fetch(
+        "https://api.ipdata.co/?api-key=c52cc586bb4f34411b035540bf6a17ad8009a71a79aabac724bda0f0"
+      ).then(async (res) => {
+        const response = await res.json();
+        sessionStorage.setItem("locationInfo", JSON.stringify(response));
+        return response;
+      });
+      // const locationInfo = JSON.parse(sessionStorage.getItem('locationInfo') || '{}');
       const weatherInfo = await fetchData(locationInfo.region);
       console.log()
       const {data} = await getData(`what will be the best suited theme from [lightTheme,darkTheme,RainyDay,NightLifeTheme,snowyTheme] based upon city is ${locationInfo.region},time is ${momentjs().hour()}, weather is ${weatherInfo.weather?.[0]?.main}. Please provide in exact array format: [{themeName}]`);

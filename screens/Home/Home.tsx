@@ -21,15 +21,6 @@ export function Home(props: HomeProps) {
       router.push("activitySelector");
     }
   };
-
-  useEffect(() => {
-    fetch(
-      "https://api.ipdata.co/?api-key=c52cc586bb4f34411b035540bf6a17ad8009a71a79aabac724bda0f0"
-    ).then(async (res) => {
-      const response = await res.json();
-      sessionStorage.setItem("locationInfo", JSON.stringify(response));
-    });
-  }, []);
   return (
     <StyledSection>
       <div className="d-flex justify-content-between align-items-center mb-3">
