@@ -43,9 +43,12 @@ export const StyledSection = styled("section")(
 
   .img-container {
     position: relative;
+    bottom: 40px;
+    text-shadow: 20px 20px 40px #000000;
     img {
       height: 200px;
       width: -webkit-fill-available;
+      object-fit: cover;
     }
     img.weatherIcon{
       width: 50px;
