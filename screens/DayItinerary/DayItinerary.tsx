@@ -10,9 +10,7 @@ export default function DayItinerary() {
     const [imageUrlArray, setImageURLArray] = useState<string[]>([]);
     const [itinerayDayData, setItinerayDayData] = useState<ItinerayProps>();
     const [selectedDayIndex, setSelectedDay] = useState(0);
-    const selectedActivitiesData: string[] = JSON.parse(
-        sessionStorage.getItem("selectedActivities") || "[]"
-    );
+    const [selectedActivitiesData, setSelectedActivitiesData] = useState<string[]>([]);
     const showTags = selectedActivitiesData?.length ? true : false;
     const tagsArray = selectedActivitiesData;
     const showTimeline = Boolean(itinerayDayData?.morning || itinerayDayData?.afternoon || itinerayDayData?.evening);
@@ -32,6 +30,9 @@ export default function DayItinerary() {
         const selectedDayIndex: number = JSON.parse(
             sessionStorage.getItem("selectedDayIndex") || "0"
         );
+        const selectedActivities: string[] = JSON.parse(
+            sessionStorage.getItem("selectedActivities") || "[]"
+        );
         const imageData: string[] = [];
         itinerary.forEach((item) => {
             imageData.push(item?.destinationImgUrl || 'https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86')
@@ -39,6 +40,7 @@ export default function DayItinerary() {
         setSelectedDay(selectedDayIndex);
         setItinerayDayData(itinerary[selectedDayIndex]);
         setImageURLArray(imageData);
+        setSelectedActivitiesData(selectedActivities);
     }, []);
     return (
         <>
