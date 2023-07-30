@@ -86,6 +86,7 @@ export const getData = async (message: string, chatId?: string) => {
   const content = parsedRes?.data?.messages?.[index]?.content || "";
   const startIndex = content.indexOf("[");
   const endIndex = content.lastIndexOf("]");
+  console.log('>>>>>', content?.substring(startIndex, endIndex + 1))
 
   return {
     id: parsedRes?.data?.id,

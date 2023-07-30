@@ -22,7 +22,7 @@ export const darkTheme = {
   },
 };
 
-export const urbanReanyDay = {
+export const rainyDay = {
   body: "#3e7d9b",
   border: "#5e7884",
   background: "#b3c9d0",
@@ -33,7 +33,7 @@ export const urbanReanyDay = {
   },
 };
 
-export const cityNightLifeTheme = {
+export const nightLifeTheme = {
   body: "#111111",
   border: "#101010",
   background: "#424242",
@@ -44,7 +44,7 @@ export const cityNightLifeTheme = {
   },
 };
 
-export const snowyCabinTheme = {
+export const snowyTheme = {
   body: "#28445d",
   border: "#004c80",
   background: "#687f8d",
