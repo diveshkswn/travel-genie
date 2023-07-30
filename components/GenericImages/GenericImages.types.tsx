@@ -1,4 +1,4 @@
-export interface GenericCarouselProps {
+export interface GenericImagesProps {
     images: string[];
     imgWidth: string;
     imgHeight: string;
