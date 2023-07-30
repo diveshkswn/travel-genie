@@ -1,6 +1,7 @@
-import Home from "@/screens/Home/Home";
+import {ActivitySelectorComponent} from "@/screens/ActivitySelector";
+import { constants } from "@/utils/constants";
 import { useEffect } from "react";
 
 export default function HomePage() {
-  return <Home />;
+  return <ActivitySelectorComponent activities={constants.ACTIVITIES_LIST} />;
 }
