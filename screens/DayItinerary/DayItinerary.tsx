@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Banner, BannerText, Main, MainTags, StyledContainer } from "./index.styles";
 import { ItinerayProps } from '../DetailView/index.types';
-import { GenericCarousel } from '@/components/GenericCarousel/GenericCarousel';
+import { GenericImages } from '@/components/GenericImages/GenericImages';
 import ItineraryTimeline from './ItineraryTimeline/ItineraryTimeline';
 
 export default function DayItinerary() {
@@ -13,26 +13,23 @@ export default function DayItinerary() {
     const showTags = true;
     const showTimeline = true;
     const itinerayDayArray = [{
-        time: '9:30am',
+        time: '1:30am',
         title: 'airport',
         description: 'land to airport',
     }, {
-        time: '1:30am',
+        time: '2:30am',
+        title: 'airport',
+        description: 'land to airport',
+    }, {
+        time: '3:30am',
         title: 'airport',
         description: 'land to airport',
     }, {
         time: '4:30am',
         title: 'airport',
         description: 'land to airport',
-    }, {
-        time: '5:30am',
-        title: 'airport',
-        description: 'land to airport',
     }];
-    const imageUrlArray = ["https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86",
-        "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86",
-        "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86",
-        "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"]
+    const imageUrlArray = Array(4).fill(itinerayDayData?.destinationImgUrl);
     useEffect(() => {
         const itinerary: ItinerayProps[] = JSON.parse(
             sessionStorage.getItem("itinerayData") || "[]"
@@ -62,7 +59,7 @@ export default function DayItinerary() {
                         {itinerayDayData?.destinationDesc}
                     </p>
                 </div>
-                <GenericCarousel images={imageUrlArray} imgHeight='140px' imgWidth='140px' />
+                <GenericImages images={imageUrlArray} imgHeight='70px' imgWidth='70px' />
                 {showTags ?
                     (<MainTags>
                         {tagsArray.map((tag, index) => (
