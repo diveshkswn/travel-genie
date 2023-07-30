@@ -63,11 +63,7 @@ export default function DayItinerary() {
                 {showTags ?
                     (<MainTags>
                         {tagsArray.map((tag, index) => (
-                            <a
-                                className={index + tag}
-                            >
-                                {tag}
-                            </a>
+                            <a key={index + tag}>{tag}</a>
                         ))}
 
                     </MainTags>) : null}

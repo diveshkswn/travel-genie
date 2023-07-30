@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const TimelineContainer = styled.div`
+export const TimelineContainer =  styled("div")(
+  ({ theme }) => `
   position: relative;
   margin: 50px 0;
-  color: brown;
 
   h2 {
     font-size: 40px;
@@ -12,11 +12,11 @@ export const TimelineContainer = styled.div`
   }
 
   hr {
-    border: 3px solid brown;
+    border: 3px solid ${theme.border};
     border-radius: 5px;
   }
 
-`;
+`);
 
 export const TimelineItem = styled.div`
   position: relative;

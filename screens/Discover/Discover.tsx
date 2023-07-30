@@ -107,13 +107,13 @@ export function Discover(props: DiscoverProps) {
       if (useGPT) {
         let tagNames =
           itinerayData.map((itinery: any) => itinery?.destination) || [];
-        const { mainResponse, tagResponse } = await searchImageAPI(
+        const { mainResponse, tagResponse = {} } = await searchImageAPI(
           itinerayData?.[0]?.cityName,
           tagNames
         );
 
         let newItinerayData = itinerayData.map((_i: any) => {
-          if (Object.keys(tagResponse).includes(_i?.destination)) {
+          if (Object?.keys(tagResponse || {})?.includes(_i?.destination)) {
             return {
               ..._i,
               cityImageURL: mainResponse,

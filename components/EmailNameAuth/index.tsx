@@ -16,7 +16,14 @@ export function EmailNameAuth() {
       name: nameRef.current?.value || "",
       email: emailRef.current?.value || "",
       callbackFn: () => {
-        router.push("/discover");
+        const data: string[] = JSON.parse(
+          sessionStorage.getItem("selectedActivities") || "[]"
+        );
+        if (data.length) {
+          router.push("discover");
+        } else {
+          router.push("activitySelector");
+        }
       },
     });
   };
