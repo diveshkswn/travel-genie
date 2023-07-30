@@ -45,12 +45,10 @@ const DetailView = () => {
 
   const handleSearch = async (prompt: string, setSearchData: any) => {
     setIsLoading(true);
-    console.log(chatId);
     const { data } = await getData(
       `${prompt} for chat id ${chatId} with default ${itinerayData?.[0]?.cityName} city if not mentioned in this prompt`,
       chatId
     );
-    console.log("data", data);
 
     let tagNames = data.map((itinery: any) => itinery?.destination) || [];
 
@@ -59,7 +57,7 @@ const DetailView = () => {
       tagNames
     );
     let newItinerayData = data?.map((_i: any) => {
-      if (Object.keys(tagResponse).includes(_i?.destination)) {
+      if (Object.keys(tagResponse || {}).includes(_i?.destination)) {
         return {
           ..._i,
           cityImageURL: mainResponse,
@@ -69,8 +67,10 @@ const DetailView = () => {
       return { ..._i, cityImageURL: mainResponse };
     });
 
-    sessionStorage.setItem("itinerayData", JSON.stringify(newItinerayData));
-    setItinerayData(newItinerayData);
+    if(newItinerayData) {
+      sessionStorage.setItem("itinerayData", JSON.stringify(newItinerayData));
+      setItinerayData(newItinerayData);
+    }
     setIsLoading(false);
     showHideWeather(true);
     setTimeout(() => {

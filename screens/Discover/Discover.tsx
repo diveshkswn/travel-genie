@@ -105,7 +105,7 @@ export function Discover(props: DiscoverProps) {
 
       let itinerayData = itinerayDataResponse;
 
-      if (itinerayData) {
+      if (itinerayData.length) {
         redirectTo = true;
         if (useGPT) {
           let tagNames =
@@ -147,6 +147,8 @@ export function Discover(props: DiscoverProps) {
         }
         sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
         sessionStorage.setItem("recents", JSON.stringify(data));
+      } else {
+        setIsLoading(false);
       }
     } else {
       redirectTo = true;

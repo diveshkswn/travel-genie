@@ -69,7 +69,7 @@ function PageLayout({ children }: { children: React.ReactNode }) {
   }, []);
   
   return (
-    <ThemeProvider theme={themeMap[theme]}>
+    <ThemeProvider theme={themeMap[theme] || "darkTheme"}>
       <GlobalStyles />
       <main className="MainContainer">{children}</main>
     </ThemeProvider>
