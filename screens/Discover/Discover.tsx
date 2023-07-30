@@ -93,6 +93,8 @@ export function Discover(props: DiscoverProps) {
     const { city = "" } = cardData;
     const index = recentData.findIndex((item) => item.city === city);
     let selectedIndex = index === -1 ? recentData.length : index;
+    let redirectTo = false;
+
     if (index === -1) {
       setIsLoading(true);
       const prompt = getPrompt(city, itinerayPropmt, useGPT);
@@ -101,57 +103,61 @@ export function Discover(props: DiscoverProps) {
         ? await getData(prompt)
         : { id: "", data: cardData?.itinerary };
 
-      console.log("itinerayData", itinerayDataResponse);
       let itinerayData = itinerayDataResponse;
 
-      if (useGPT) {
-        let tagNames =
-          itinerayData.map((itinery: any) => itinery?.destination) || [];
-        const { mainResponse, tagResponse = {} } = await searchImageAPI(
-          itinerayData?.[0]?.cityName,
-          tagNames
-        );
+      if (itinerayData) {
+        redirectTo = true;
+        if (useGPT) {
+          let tagNames =
+            itinerayData.map((itinery: any) => itinery?.destination) || [];
+          const { mainResponse, tagResponse = {} } = await searchImageAPI(
+            itinerayData?.[0]?.cityName,
+            tagNames
+          );
 
-        let newItinerayData = itinerayData.map((_i: any) => {
-          if (Object?.keys(tagResponse || {})?.includes(_i?.destination)) {
-            return {
-              ..._i,
-              cityImageURL: mainResponse,
-              destinationImgUrl: tagResponse[_i?.destination],
+          let newItinerayData = itinerayData.map((_i: any) => {
+            if (Object?.keys(tagResponse || {})?.includes(_i?.destination)) {
+              return {
+                ..._i,
+                cityImageURL: mainResponse,
+                destinationImgUrl: tagResponse[_i?.destination],
+              };
+            }
+            return { ..._i, cityImageURL: mainResponse };
+          });
+          itinerayData = newItinerayData;
+        }
+
+        const locationData = city
+          ? cardData
+          : {
+              city: itinerayData?.[0]?.cityName,
+              overview: itinerayData?.[0]?.cityOverview,
+              country: itinerayData?.[0]?.country,
+              url: itinerayData?.[0]?.cityImageURL,
             };
-          }
-          return { ..._i, cityImageURL: mainResponse };
-        });
-        itinerayData = newItinerayData;
-      }
-      console.log("itinerayData new:::", itinerayData);
+        const data = [
+          ...recentData,
+          { ...locationData, itinerayData, chatId: id, useGPT },
+        ];
 
-      const locationData = city
-        ? cardData
-        : {
-            city: itinerayData?.[0]?.cityName,
-            overview: itinerayData?.[0]?.cityOverview,
-            country: itinerayData?.[0]?.country,
-            url: itinerayData?.[0]?.cityImageURL,
-          };
-      const data = [
-        ...recentData,
-        { ...locationData, itinerayData, chatId: id, useGPT },
-      ];
-
-      if (data.length > 10) {
-        data.shift(); // Remove the first element from the array
-        selectedIndex = 9;
+        if (data.length > 10) {
+          data.shift(); // Remove the first element from the array
+          selectedIndex = 9;
+        }
+        sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
+        sessionStorage.setItem("recents", JSON.stringify(data));
       }
-      sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
-      sessionStorage.setItem("recents", JSON.stringify(data));
     } else {
+      redirectTo = true;
       const itinerayData = recentData[selectedIndex]?.itinerayData;
       sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
     }
 
-    sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
-    router.push("detailView");
+    if(redirectTo) {
+      sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
+      router.push("detailView");
+    }
   };
 
   return (

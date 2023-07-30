@@ -77,10 +77,9 @@ const DetailView = () => {
       setSearchData?.("");
     }, 500);
   };
-  console.log("abc", itinerayData[0]);
+
   return (
     <StyledSection>
-      {itinerayData[0]?.cityName}
       <div className="img-container">
         <img src={url} alt={itinerayData[0]?.cityName || city} />
         <h2 className="title">{itinerayData[0]?.cityName || city}</h2>

@@ -14,7 +14,7 @@ const ItineraryTimeline: React.FC<ItineraryTimelineProps> = ({ itinerary, headin
                 }}>
                     {index >= 0 && <TimelineConnector />}
                     <TimelineDot />
-                    <div className='timeline-details' style={{ marginLeft: index % 2 === 0 ? '55%' : '' }}>
+                    <div className='timeline-details w-50' style={{ marginLeft: index % 2 === 0 ? '55%' : '' }}>
                         <TimelineItemTime>{item.time}</TimelineItemTime>
                         <TimelineItemTitle>{item.title}</TimelineItemTitle>
                         <TimelineItemDescription>{item.description}</TimelineItemDescription>

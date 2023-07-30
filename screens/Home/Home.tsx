@@ -1,40 +1,24 @@
 "use client";
 
-import { memo, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { memo, useEffect, useState } from "react";
+import { constants } from "@/utils/constants";
 
 import { HomeProps } from "./index.types";
-import { StyledSection } from "./index.styles";
-import { Carousel } from "@/components/Carousel/Carousel";
-import Button from "@/components/Button/Button";
+import Discover from "../Discover/Discover";
+import { ActivitySelectorComponent } from "../ActivitySelector";
+
+const {ACTIVITIES_LIST} = constants;
 
 export function Home(props: HomeProps) {
-  const router = useRouter();
-
-  const handleButtonClick = async () => {
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  useEffect(() => {
     const data: string[] = JSON.parse(
       sessionStorage.getItem("selectedActivities") || "[]"
     );
-    if (data.length) {
-      router.push("discover");
-    } else {
-      router.push("activitySelector");
-    }
-  };
-  return (
-    <StyledSection>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <Carousel />
-      </div>
-      <div className="d-flex justify-content-center align-items-center">
-        <Button
-          text="Continue"
-          handleClick={handleButtonClick}
-          className="btn"
-        />
-      </div>
-    </StyledSection>
-  );
+    setSelectedActivities(data);
+  },[])
+
+  return selectedActivities.length ? <Discover title="Discover" /> : <ActivitySelectorComponent activities={ACTIVITIES_LIST} />;
 }
 
 export default memo(Home);
