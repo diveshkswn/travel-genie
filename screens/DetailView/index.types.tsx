@@ -15,4 +15,14 @@ export interface ItinerayProps {
     cityOverview: string;
     destinationDesc: string;
     destinationImgUrl?: string;
+    morning?: dayTimeItinerary[];
+    afternoon?: dayTimeItinerary[];
+    evening?: dayTimeItinerary[];
+}
+
+export interface dayTimeItinerary {
+    placeName: string;
+    activity: string;
+    from_time: string;
+    to_time: string;
 }

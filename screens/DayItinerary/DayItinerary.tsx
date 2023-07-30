@@ -10,27 +10,21 @@ export default function DayItinerary() {
     const [imageUrlArray, setImageURLArray] = useState<string[]>([]);
     const [itinerayDayData, setItinerayDayData] = useState<ItinerayProps>();
     const [selectedDayIndex, setSelectedDay] = useState(0);
-    const tagsArray = ['night-life', 'dating', 'shopping', 'culture'];
-    const showTags = true;
-    const showTimeline = true;
-    const itinerayDayArray = [{
-        time: '1:30am',
-        title: 'airport',
-        description: 'land to airport',
-    }, {
-        time: '2:30am',
-        title: 'airport',
-        description: 'land to airport',
-    }, {
-        time: '3:30am',
-        title: 'airport',
-        description: 'land to airport',
-    }, {
-        time: '4:30am',
-        title: 'airport',
-        description: 'land to airport',
-    }];
-
+    const selectedActivitiesData: string[] = JSON.parse(
+        sessionStorage.getItem("selectedActivities") || "[]"
+    );
+    const showTags = selectedActivitiesData?.length ? true : false;
+    const tagsArray = selectedActivitiesData;
+    const showTimeline = Boolean(itinerayDayData?.morning || itinerayDayData?.afternoon || itinerayDayData?.evening);
+    const itineraryArray = [itinerayDayData?.morning, itinerayDayData?.afternoon, itinerayDayData?.evening];
+    const formattedDayTimeline = itineraryArray.map(time => {
+        return {
+            time: `${time?.[0].from_time} - ${time?.[0].to_time}`,
+            title: time?.[0].placeName || '',
+            description: time?.[0].activity || '',
+        }
+    })
+    const itinerayDayArray = formattedDayTimeline;
     useEffect(() => {
         const itinerary: ItinerayProps[] = JSON.parse(
             sessionStorage.getItem("itinerayData") || "[]"
