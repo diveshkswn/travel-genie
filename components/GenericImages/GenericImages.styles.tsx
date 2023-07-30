@@ -6,6 +6,7 @@ export const GenericImagesSection = styled("section")`
     ul {
         list-style: none;
         display: flex;
+        justify-content: space-around;
     }
     img {
         margin-right: 10px;
