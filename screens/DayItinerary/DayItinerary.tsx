@@ -76,7 +76,7 @@ export default function DayItinerary() {
                     </MainTags>) : null}
             </Main>
             {showTimeline ? (
-                <ItineraryTimeline itinerary={itinerayDayArray} heading={'Day ' + selectedDayIndex + 1 + ', Itinerary'} />
+                <ItineraryTimeline itinerary={itinerayDayArray} heading={'Day ' + Number(selectedDayIndex + 1) + ', Itinerary'} />
             ) : null}
         </>
     );
