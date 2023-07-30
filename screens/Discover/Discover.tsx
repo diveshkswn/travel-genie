@@ -116,14 +116,26 @@ export function Discover(props: DiscoverProps) {
           );
 
           let newItinerayData = itinerayData.map((_i: any) => {
+            let imgData = { ..._i, cityImageURL: mainResponse };
+
             if (Object?.keys(tagResponse || {})?.includes(_i?.destination)) {
               return {
                 ..._i,
                 cityImageURL: mainResponse,
                 destinationImgUrl: tagResponse[_i?.destination],
               };
+            } else {
+              Object.keys(tagResponse || {}).forEach((item) => {
+                if(_i?.destination.includes(item)){
+                  imgData = {
+                    ..._i,
+                    cityImageURL: mainResponse,
+                    destinationImgUrl: tagResponse[item],
+                  };
+                };
+              });
+              return imgData;
             }
-            return { ..._i, cityImageURL: mainResponse };
           });
           itinerayData = newItinerayData;
         }

@@ -41,7 +41,7 @@ const DetailView = () => {
   const navigateToDayItinerary = (index: number) => {
     sessionStorage.setItem("selectedDayIndex", JSON.stringify(index));
     router.push("dayItinerary");
-  }
+  };
 
   const handleSearch = async (prompt: string, setSearchData: any) => {
     setIsLoading(true);
@@ -57,17 +57,29 @@ const DetailView = () => {
       tagNames
     );
     let newItinerayData = data?.map((_i: any) => {
-      if (Object.keys(tagResponse || {}).includes(_i?.destination)) {
+      let imgData = { ..._i, cityImageURL: mainResponse };
+
+      if (Object?.keys(tagResponse || {})?.includes(_i?.destination)) {
         return {
           ..._i,
           cityImageURL: mainResponse,
           destinationImgUrl: tagResponse[_i?.destination],
         };
+      } else {
+        Object.keys(tagResponse || {}).forEach((item) => {
+          if (_i?.destination.includes(item)) {
+            imgData = {
+              ..._i,
+              cityImageURL: mainResponse,
+              destinationImgUrl: tagResponse[item],
+            };
+          }
+        });
+        return imgData;
       }
-      return { ..._i, cityImageURL: mainResponse };
     });
 
-    if(newItinerayData) {
+    if (newItinerayData) {
       sessionStorage.setItem("itinerayData", JSON.stringify(newItinerayData));
       setItinerayData(newItinerayData);
     }
@@ -94,7 +106,11 @@ const DetailView = () => {
         </p>
         {itinerayData?.map((item, index) => {
           return (
-            <div className="img-col" key={`itineray-${index}`} onClick={() => navigateToDayItinerary(index)}>
+            <div
+              className="img-col"
+              key={`itineray-${index}`}
+              onClick={() => navigateToDayItinerary(index)}
+            >
               <div className="day-details">
                 <h3 className="date">Day {item.day}</h3>
                 <h5 className="place">{item?.destination}</h5>
