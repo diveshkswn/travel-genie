@@ -1,10 +1,25 @@
 "use client";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 // import { FacebookAuth } from "../FacebookAuth";
 import { AuthContainerDiv } from "./AuthContainer.styles";
 import { EmailNameAuth } from "../EmailNameAuth";
+import { eventUtil } from "@/utils/eventUtils";
 
 export function AuthContainer() {
+  useEffect(() => {
+    eventUtil.on('backgroundImgURL', function(imageURL) {
+      const body = document.querySelector('body');
+      if(body) {
+        body.style.backgroundImage = `url(${imageURL})`;
+      }
+    })
+    return () => {
+      const body = document.querySelector('body');
+      if(body) {
+        body.style.backgroundImage = ``;
+      }
+    }
+  }, [])
   return (
     <div className="AuthContainer">
       <AuthContainerDiv $minHeight={300}>
