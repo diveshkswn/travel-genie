@@ -7,6 +7,7 @@ import momentjs from "moment";
 import { GlobalStyles, lightTheme, darkTheme, nightLifeTheme, rainyDay,snowyTheme } from "@/utils/themes";
 import { getData } from "@/utils/helpers";
 import { cityImageArray } from "@/data/cityimage";
+import { eventUtil } from "@/utils/eventUtils";
 
 const themeMap = {
   lightTheme, darkTheme, nightLifeTheme, rainyDay, snowyTheme
@@ -63,6 +64,10 @@ function PageLayout({ children }: { children: React.ReactNode }) {
       const {data} = await getData(`what will be the best suited theme from theme array: ${themeArray} and extract best suited image from cityImageJson: ${JSON.stringify(imgURLs)} based upon city is ${locationInfo.region},time is ${momentjs().hour()}, weather is ${weatherInfo.weather?.[0]?.main}. Please provide in exact array format: [{themeName, imageURL}]`);
       if(data?.[0]?.themeName) {
         setTheme(data?.[0]?.themeName);
+      }
+      if(data?.[0]?.imageURL) {
+        sessionStorage.setItem('imageURL', data?.[0]?.imageURL);
+        eventUtil.dispatch('backgroundImgURL', data?.[0]?.imageURL);
       }
     }
     asyncFunction();
