@@ -1,4 +1,4 @@
-[
+export const cityImageArray = [
   {
     "city": "Delhi",
     "imgUrl": {
@@ -22,7 +22,7 @@
     }
   },
   {
-    "city": "A picturesque cityscape, showcasing different moments throughout the day - morning, night, and afternoon - accompanied by a variety of weather conditions, including cloudy, sunny, and rainy scenes.",
+    "city": "default",
     "imgUrl": {
       "Morning": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/6e/54/05/img-20180922-090745-hdr.jpg?w=1400&h=-1&s=1",
       "Afternoon": "https://assets-news.housing.com/news/wp-content/uploads/2022/06/28171311/places-to-visit-in-India1.jpg",

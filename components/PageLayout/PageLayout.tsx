@@ -2,13 +2,17 @@
 
 import { memo, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles, lightTheme, darkTheme, nightLifeTheme, rainyDay,snowyTheme } from "@/utils/themes";
 import momentjs from "moment";
+
+import { GlobalStyles, lightTheme, darkTheme, nightLifeTheme, rainyDay,snowyTheme } from "@/utils/themes";
 import { getData } from "@/utils/helpers";
+import { cityImageArray } from "@/data/cityimage";
 
 const themeMap = {
   lightTheme, darkTheme, nightLifeTheme, rainyDay, snowyTheme
 };
+
+const themeArray = ['lightTheme','darkTheme','RainyDay','NightLifeTheme','snowyTheme']
 
 const fetchData = async (DestiName: string) => {
   try {
@@ -30,6 +34,20 @@ const fetchData = async (DestiName: string) => {
 
 function PageLayout({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<"darkTheme" | "lightTheme" | "nightLifeTheme" | "rainyDay" | "snowyTheme">("darkTheme");
+
+  const getCityImageJSON = (city: string) => {
+    let data = {};
+    cityImageArray.forEach((item) => {
+      if(item.city === city){
+        data = item.imgUrl;
+      }
+    })
+    if(!Object.keys(data)?.length) {
+      data = cityImageArray[2].imgUrl;
+    }
+    return data;
+  }
+
   useEffect(() => {
     const asyncFunction = async() => {
       const locationInfo = await fetch(
@@ -41,14 +59,15 @@ function PageLayout({ children }: { children: React.ReactNode }) {
       });
       // const locationInfo = JSON.parse(sessionStorage.getItem('locationInfo') || '{}');
       const weatherInfo = await fetchData(locationInfo.region);
-      console.log()
-      const {data} = await getData(`what will be the best suited theme from [lightTheme,darkTheme,RainyDay,NightLifeTheme,snowyTheme] based upon city is ${locationInfo.region},time is ${momentjs().hour()}, weather is ${weatherInfo.weather?.[0]?.main}. Please provide in exact array format: [{themeName}]`);
+      const imgURLs = getCityImageJSON(locationInfo.region);
+      const {data} = await getData(`what will be the best suited theme from theme array: ${themeArray} and extract best suited image from cityImageJson: ${JSON.stringify(imgURLs)} based upon city is ${locationInfo.region},time is ${momentjs().hour()}, weather is ${weatherInfo.weather?.[0]?.main}. Please provide in exact array format: [{themeName, imageURL}]`);
       if(data?.[0]?.themeName) {
         setTheme(data?.[0]?.themeName);
       }
     }
     asyncFunction();
   }, []);
+  
   return (
     <ThemeProvider theme={themeMap[theme]}>
       <GlobalStyles />
