@@ -5,7 +5,7 @@ import { ItineraryTimelineProps } from './index.types';
 
 const ItineraryTimeline: React.FC<ItineraryTimelineProps> = ({ itinerary, heading }) => {
     return (
-        <TimelineContainer>
+        <TimelineContainer className='secondary-fg'>
             <h2>{heading}</h2>
             <hr />
             {itinerary.map((item, index) => (

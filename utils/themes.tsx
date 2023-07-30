@@ -1,13 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 export const lightTheme = {
-  body: "#99A98F",
-  border: "#5f767b",
-  background: "#7C9070",
+  body: "#889c9e",
+  border: "#081d2d",
+  background: "#5f767b",
   containerBg: "#ffffff",
   colors: {
     primaryColor: "#ffffff",
-    secondaryColor: "#dfecf9",
+    secondaryColor: "#d2d0d0",
   },
 };
 

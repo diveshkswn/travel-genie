@@ -49,11 +49,12 @@ export const BannerText = styled.div`
   }
 `;
 
-export const Main = styled.div`
+export const Main = styled("div")(
+  ({ theme }) => `
   padding: 20px;
-  background: #042f66;
-  color: #fff;
-`;
+  background-color: ${theme.background};
+  color: ${theme.colors.primaryColor}
+`);
 
 export const MainImg = styled.div`
   margin: 0 auto;
