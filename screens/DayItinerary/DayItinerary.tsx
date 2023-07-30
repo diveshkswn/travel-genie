@@ -7,6 +7,7 @@ import { GenericImages } from '@/components/GenericImages/GenericImages';
 import ItineraryTimeline from './ItineraryTimeline/ItineraryTimeline';
 
 export default function DayItinerary() {
+    const [imageUrlArray, setImageURLArray] = useState<string[]>([]);
     const [itinerayDayData, setItinerayDayData] = useState<ItinerayProps>();
     const [selectedDayIndex, setSelectedDay] = useState(0);
     const tagsArray = ['night-life', 'dating', 'shopping', 'culture'];
@@ -29,7 +30,7 @@ export default function DayItinerary() {
         title: 'airport',
         description: 'land to airport',
     }];
-    const imageUrlArray = Array(4).fill(itinerayDayData?.destinationImgUrl);
+
     useEffect(() => {
         const itinerary: ItinerayProps[] = JSON.parse(
             sessionStorage.getItem("itinerayData") || "[]"
@@ -37,8 +38,13 @@ export default function DayItinerary() {
         const selectedDayIndex: number = JSON.parse(
             sessionStorage.getItem("selectedDayIndex") || "0"
         );
+        const imageData: string[] = [];
+        itinerary.forEach((item) => {
+            imageData.push(item?.destinationImgUrl || '')
+        });
         setSelectedDay(selectedDayIndex);
         setItinerayDayData(itinerary[selectedDayIndex]);
+        setImageURLArray(imageData);
     }, []);
     return (
         <>

@@ -9,17 +9,13 @@ export function GenericImages(props: GenericImagesProps) {
 
     return (
         <GenericImagesSection className="image-container">
-            <div>
-                <div>
-                    <ul>
-                        {images.map((image, index) => (
-                            <li key={index}>
-                                <img src={image} alt={`${index + 1}`} style={{ width: imgWidth, height: imgHeight, objectFit: 'cover' }} />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
+            <ul>
+                {images.map((image, index) => (
+                    <li key={index}>
+                        <img src={image} alt={`${index + 1}`} style={{ width: imgWidth, height: imgHeight, objectFit: 'cover' }} />
+                    </li>
+                ))}
+            </ul>
         </GenericImagesSection>
     );
 }
