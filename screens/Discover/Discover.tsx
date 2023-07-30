@@ -91,7 +91,7 @@ export function Discover(props: DiscoverProps) {
     useGPT?: boolean
   ) => {
     const { city = "" } = cardData;
-    const index = recentData.findIndex((item) => item.city === city);
+    const index = recentData.findIndex((item) => item.city === city || itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase()));
     let selectedIndex = index === -1 ? recentData.length : index;
     let redirectTo = false;
 
