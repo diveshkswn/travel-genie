@@ -59,7 +59,7 @@ export default function DayItinerary() {
                         {itinerayDayData?.destinationDesc}
                     </p>
                 </div>
-                <GenericImages images={imageUrlArray} imgHeight='70px' imgWidth='70px' />
+                <GenericImages images={imageUrlArray?.slice(0, 4)} imgHeight='70px' imgWidth='70px' />
                 {showTags ?
                     (<MainTags>
                         {tagsArray.map((tag, index) => (
