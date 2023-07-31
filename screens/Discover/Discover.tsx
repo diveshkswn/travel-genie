@@ -8,6 +8,7 @@ import { Search } from "@/components/Search/Search";
 import Tabs from "@/components/Tabs/Tabs";
 import Card from "@/components/Card/Card";
 import { constants } from "@/utils/constants";
+import { handleLogout } from "@/utils/helpers";
 
 import { StyledSection } from "./index.styles";
 import { DestinationProps, DiscoverProps } from "./index.types";
@@ -46,7 +47,8 @@ export function Discover(props: DiscoverProps) {
   const renderCard = (
     item: DestinationProps,
     key: string,
-    isVertical = true
+    isVertical = true,
+    isRecentCategory = false
   ) => {
     return (
       <Card
@@ -54,6 +56,7 @@ export function Discover(props: DiscoverProps) {
         key={key}
         {...item}
         isVertical={isVertical}
+        isRecentCategory={isRecentCategory}
         handleCardClick={(params: Record<string, string>) =>
           handleCardClick(params, "", false)
         }
@@ -126,7 +129,7 @@ export function Discover(props: DiscoverProps) {
               };
             } else {
               Object.keys(tagResponse || {}).forEach((item) => {
-                if(_i?.destination.includes(item)){
+                if (_i?.destination.includes(item)) {
                   imgData = {
                     ..._i,
                     cityImageURL: mainResponse,
@@ -143,11 +146,11 @@ export function Discover(props: DiscoverProps) {
         const locationData = city
           ? cardData
           : {
-              city: itinerayData?.[0]?.cityName,
-              overview: itinerayData?.[0]?.cityOverview,
-              country: itinerayData?.[0]?.country,
-              url: itinerayData?.[0]?.cityImageURL,
-            };
+            city: itinerayData?.[0]?.cityName,
+            overview: itinerayData?.[0]?.cityOverview,
+            country: itinerayData?.[0]?.country,
+            url: itinerayData?.[0]?.cityImageURL,
+          };
         const data = [
           ...recentData,
           { ...locationData, itinerayData, chatId: id, useGPT },
@@ -168,7 +171,7 @@ export function Discover(props: DiscoverProps) {
       sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
     }
 
-    if(redirectTo) {
+    if (redirectTo) {
       sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
       router.push("detailView");
     }
@@ -179,12 +182,26 @@ export function Discover(props: DiscoverProps) {
       <div className="px-4 pt-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h1 className="m-0">{props.title}</h1>
-          <span
-            className="user-icon d-flex justify-content-center align-items-center"
-            onClick={() => router.push("activitySelector")}
-          >
-            <i className="bi bi-person-fill" />
-          </span>
+          <div className="d-flex">
+            <span
+              className="user-icon mx-2 d-flex justify-content-center align-items-center"
+              onClick={() => {
+                handleLogout({
+                  callbackFn: () => {
+                    router.refresh();
+                  },
+                });
+              }}
+            >
+              <i className="bi bi-power" />
+            </span>
+            <span
+              className="user-icon mx-2 d-flex justify-content-center align-items-center"
+              onClick={() => router.push("activitySelector")}
+            >
+              <i className="bi bi-person-fill" />
+            </span>
+          </div>
         </div>
         <Search
           handleSearch={(prompt: string) => handleCardClick({}, prompt, true)}
@@ -211,9 +228,9 @@ export function Discover(props: DiscoverProps) {
           </div>
         </div>
       ) : (
-        <div className="d-flex content_container card-container">
+        <div className="d-flex content_container card-container flex-column-reverse ms-4">
           {recentData?.map((item, index) =>
-            renderCard(item, `recent-card-${index}`)
+            renderCard(item, `recent-card-${index}`, false, true)
           )}
         </div>
       )}
