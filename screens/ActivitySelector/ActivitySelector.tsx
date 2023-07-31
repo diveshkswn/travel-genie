@@ -13,7 +13,6 @@ import { StyledContainer, ActivityContainer } from "./index.styles";
 import { constants } from "@/utils/constants";
 import Loader from "@/components/Loader/Loader";
 import Button from "@/components/Button/Button";
-import { destinations } from "@/data/newdata";
 
 const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   const router = useRouter();

@@ -8,6 +8,7 @@ import { Search } from "@/components/Search/Search";
 import Tabs from "@/components/Tabs/Tabs";
 import Card from "@/components/Card/Card";
 import { constants } from "@/utils/constants";
+import { handleLogout } from "@/utils/helpers";
 
 import { StyledSection } from "./index.styles";
 import { DestinationProps, DiscoverProps } from "./index.types";
@@ -46,7 +47,8 @@ export function Discover(props: DiscoverProps) {
   const renderCard = (
     item: DestinationProps,
     key: string,
-    isVertical = true
+    isVertical = true,
+    isRecentCategory = false
   ) => {
     return (
       <Card
@@ -54,6 +56,7 @@ export function Discover(props: DiscoverProps) {
         key={key}
         {...item}
         isVertical={isVertical}
+        isRecentCategory={isRecentCategory}
         handleCardClick={(params: Record<string, string>) =>
           handleCardClick(params, "", false)
         }
@@ -90,10 +93,10 @@ export function Discover(props: DiscoverProps) {
     itinerayPropmt?: string,
     useGPT?: boolean
   ) => {
-    const { city = "" } = cardData;
+    const { city = "", region = "" } = cardData;
     const index = recentData.findIndex(
       (item) =>
-        item.city === city ||
+        item.city === (city || region) ||
         itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase())
     );
     let selectedIndex = index === -1 ? recentData.length : index;
@@ -101,7 +104,7 @@ export function Discover(props: DiscoverProps) {
 
     if (index === -1) {
       setIsLoading(true);
-      const prompt = getPrompt(city, itinerayPropmt, useGPT);
+      const prompt = getPrompt(city || region, itinerayPropmt, useGPT);
 
       const { id, data: itinerayDataResponse } = useGPT
         ? await getData(prompt)
@@ -144,14 +147,15 @@ export function Discover(props: DiscoverProps) {
           itinerayData = newItinerayData;
         }
 
-        const locationData = city
-          ? cardData
-          : {
-              city: itinerayData?.[0]?.cityName,
-              overview: itinerayData?.[0]?.cityOverview,
-              country: itinerayData?.[0]?.country,
-              url: itinerayData?.[0]?.cityImageURL,
-            };
+        const locationData =
+          city || region
+            ? cardData
+            : {
+                city: itinerayData?.[0]?.cityName,
+                overview: itinerayData?.[0]?.cityOverview,
+                country: itinerayData?.[0]?.country,
+                url: itinerayData?.[0]?.cityImageURL,
+              };
         const data = [
           ...recentData,
           { ...locationData, itinerayData, chatId: id, useGPT },
@@ -183,15 +187,29 @@ export function Discover(props: DiscoverProps) {
       <div className="px-4 pt-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h1 className="m-0">{props.title}</h1>
-          <span
-            className="user-icon d-flex justify-content-center align-items-center"
-            onClick={() => {
-              deleteCookie("recommendedDestination");
-              router.push("activitySelector");
-            }}
-          >
-            <i className="bi bi-person-fill" />
-          </span>
+          <div className="d-flex">
+            <span
+              className="user-icon mx-2 d-flex justify-content-center align-items-center"
+              onClick={() => {
+                handleLogout({
+                  callbackFn: () => {
+                    router.refresh();
+                  },
+                });
+              }}
+            >
+              <i className="bi bi-power" />
+            </span>
+            <span
+              className="user-icon mx-2 d-flex justify-content-center align-items-center"
+              onClick={() => {
+                deleteCookie("recommendedDestination");
+                router.push("activitySelector");
+              }}
+            >
+              <i className="bi bi-person-fill" />
+            </span>
+          </div>
         </div>
         <Search
           handleSearch={(prompt: string) => handleCardClick({}, prompt, true)}
@@ -218,9 +236,9 @@ export function Discover(props: DiscoverProps) {
           </div>
         </div>
       ) : (
-        <div className="d-flex content_container card-container">
+        <div className="d-flex content_container card-container flex-column-reverse">
           {recentData?.map((item, index) =>
-            renderCard(item, `recent-card-${index}`)
+            renderCard(item, `recent-card-${index}`, false, true)
           )}
         </div>
       )}

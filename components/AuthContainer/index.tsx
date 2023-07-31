@@ -11,6 +11,8 @@ export function AuthContainer() {
       const body = document.querySelector('body');
       if(body) {
         body.style.backgroundImage = `url(${imageURL})`;
+        body.style.backgroundPosition = 'center';
+        body.style.backgroundSize = 'cover';
       }
     })
     return () => {
