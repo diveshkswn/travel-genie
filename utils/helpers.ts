@@ -179,7 +179,7 @@ export const searchImage = async (
           } else {
             tagResponse = {
               ...tagResponse,
-              ...{ [tagName]: parsedRes?.hits?.[0]?.webformatURL },
+              ...{ [tagName]: parsedRes?.hits?.[i + 1]?.webformatURL },
             };
           }
         }
