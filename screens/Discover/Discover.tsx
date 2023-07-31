@@ -11,7 +11,7 @@ import { constants } from "@/utils/constants";
 
 import { StyledSection } from "./index.styles";
 import { DestinationProps, DiscoverProps } from "./index.types";
-import { getData, searchImageAPI } from "@/utils/helpers";
+import { deleteCookie, getData, searchImageAPI } from "@/utils/helpers";
 import Loader from "@/components/Loader/Loader";
 
 const { TAB_LIST, ITINERAY_PROMPT } = constants;
@@ -91,7 +91,11 @@ export function Discover(props: DiscoverProps) {
     useGPT?: boolean
   ) => {
     const { city = "" } = cardData;
-    const index = recentData.findIndex((item) => item.city === city || itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase()));
+    const index = recentData.findIndex(
+      (item) =>
+        item.city === city ||
+        itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase())
+    );
     let selectedIndex = index === -1 ? recentData.length : index;
     let redirectTo = false;
 
@@ -126,13 +130,13 @@ export function Discover(props: DiscoverProps) {
               };
             } else {
               Object.keys(tagResponse || {}).forEach((item) => {
-                if(_i?.destination.includes(item)){
+                if (_i?.destination.includes(item)) {
                   imgData = {
                     ..._i,
                     cityImageURL: mainResponse,
                     destinationImgUrl: tagResponse[item],
                   };
-                };
+                }
               });
               return imgData;
             }
@@ -168,7 +172,7 @@ export function Discover(props: DiscoverProps) {
       sessionStorage.setItem("itinerayData", JSON.stringify(itinerayData));
     }
 
-    if(redirectTo) {
+    if (redirectTo) {
       sessionStorage.setItem("selectedIndex", JSON.stringify(selectedIndex));
       router.push("detailView");
     }
@@ -181,7 +185,10 @@ export function Discover(props: DiscoverProps) {
           <h1 className="m-0">{props.title}</h1>
           <span
             className="user-icon d-flex justify-content-center align-items-center"
-            onClick={() => router.push("activitySelector")}
+            onClick={() => {
+              deleteCookie("recommendedDestination");
+              router.push("activitySelector");
+            }}
           >
             <i className="bi bi-person-fill" />
           </span>

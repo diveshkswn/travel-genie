@@ -42,7 +42,7 @@ export function setCookie(c_name: string, value: any, minutes?: number) {
   console.log("c_value", c_value);
 }
 
-function deleteCookie(cookieName: string) {
+export function deleteCookie(cookieName: string) {
   document.cookie =
     cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
@@ -74,24 +74,32 @@ export const handleLogout = ({ callbackFn }: { callbackFn: () => any }) => {
 };
 
 export const getData = async (message: string, chatId?: string) => {
-  const reqBody = { message, ...(chatId && { existingChatId: chatId }) };
-  const res = await fetch("/api/gpt", {
-    method: "POST",
-    body: JSON.stringify(reqBody),
-  });
+  try {
+    const reqBody = { message, ...(chatId && { existingChatId: chatId }) };
+    const res = await fetch("/api/gpt", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+    });
 
-  const parsedRes = await res.json();
+    const parsedRes = await res.json();
 
-  const index = parsedRes?.data?.messages?.length - 1;
-  const content = parsedRes?.data?.messages?.[index]?.content || "";
-  const startIndex = content.indexOf("[");
-  const endIndex = content.lastIndexOf("]");
-  console.log('>>>>>', content?.substring(startIndex, endIndex + 1))
+    const index = parsedRes?.data?.messages?.length - 1;
+    const content = parsedRes?.data?.messages?.[index]?.content || "";
+    const startIndex = content.indexOf("[");
+    const endIndex = content.lastIndexOf("]");
+    console.log(">>>>>", content?.substring(startIndex, endIndex + 1));
 
-  return {
-    id: parsedRes?.data?.id,
-    data: JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]"),
-  };
+    return {
+      id: parsedRes?.data?.id,
+      data: JSON?.parse?.(content?.substring(startIndex, endIndex + 1) || "[]"),
+    };
+  } catch (e) {
+    console.log("Exception", e);
+    return {
+      id: "",
+      data: JSON?.parse?.("[]"),
+    };
+  }
 };
 
 export const getLangChainData = async (
