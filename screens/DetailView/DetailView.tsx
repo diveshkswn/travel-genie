@@ -11,6 +11,7 @@ import { constants } from "@/utils/constants";
 import { DetailViewProps, ItinerayProps } from "./index.types";
 import { StyledSection } from "./index.styles";
 import { useRouter } from "next/navigation";
+import { Navigation } from "@/components/Navigation/Navigation";
 
 const { UPDATE_SEARCH_PROMPT } = constants;
 
@@ -91,53 +92,56 @@ const DetailView = () => {
   };
 
   return (
-    <StyledSection>
-      <div className="img-container">
-        <img src={url} alt={itinerayData[0]?.cityName || city} />
-        <h2 className="title">{itinerayData[0]?.cityName || city}</h2>
-        {showWeather ? (
-          <CityHeader city={itinerayData[0]?.cityName || city}></CityHeader>
-        ) : null}
-      </div>
-      <div className="content-container">
-        <span>Description</span>
-        <p className="secondary-fg pt-3">
-          {itinerayData[0]?.cityOverview || overview}
-        </p>
-        {itinerayData?.map((item, index) => {
-          return (
-            <div
-              className="img-col"
-              key={`itineray-${index}`}
-              onClick={() => navigateToDayItinerary(index)}
-            >
-              <div className="day-details">
-                <h3 className="date">Day {item.day}</h3>
-                <h5 className="place">{item?.destination}</h5>
-                <p className="place">{item?.destinationDesc}</p>
+    <>
+      <Navigation />
+      <StyledSection>
+        <div className="img-container">
+          <img src={url} alt={itinerayData[0]?.cityName || city} />
+          <h2 className="title">{itinerayData[0]?.cityName || city}</h2>
+          {showWeather ? (
+            <CityHeader city={itinerayData[0]?.cityName || city}></CityHeader>
+          ) : null}
+        </div>
+        <div className="content-container">
+          <span>Description</span>
+          <p className="secondary-fg pt-3">
+            {itinerayData[0]?.cityOverview || overview}
+          </p>
+          {itinerayData?.map((item, index) => {
+            return (
+              <div
+                className="img-col"
+                key={`itineray-${index}`}
+                onClick={() => navigateToDayItinerary(index)}
+              >
+                <div className="day-details">
+                  <h3 className="date">Day {item.day}</h3>
+                  <h5 className="place">{item?.destination}</h5>
+                  <p className="place">{item?.destinationDesc}</p>
+                </div>
+                <img
+                  src={
+                    item?.destinationImgUrl ||
+                    "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"
+                  }
+                  alt={item?.destination}
+                />
               </div>
-              <img
-                src={
-                  item?.destinationImgUrl ||
-                  "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?w=2000&t=st=1690444804~exp=1690445404~hmac=1f1a39206afea25566bec6506b122fb302985ec510793866e935aa7b0af7de86"
-                }
-                alt={item?.destination}
-              />
-            </div>
-          );
-        })}
-      </div>
-      {useGPT && (
-        <Search
-          searchClassName="search"
-          handleSearch={(prompt: string, setSearchData) => {
-            handleSearch(prompt, setSearchData);
-          }}
-          prompt={UPDATE_SEARCH_PROMPT}
-        />
-      )}
-      {isLoading && <Loader />}
-    </StyledSection>
+            );
+          })}
+        </div>
+        {useGPT && (
+          <Search
+            searchClassName="search"
+            handleSearch={(prompt: string, setSearchData) => {
+              handleSearch(prompt, setSearchData);
+            }}
+            prompt={UPDATE_SEARCH_PROMPT}
+          />
+        )}
+        {isLoading && <Loader />}
+      </StyledSection>
+    </>
   );
 };
 
