@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { constants } from "@/utils/constants";
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const { PSCHAT_URL, PSCHAT_AUTH } = process.env;
 const { GPT_INITIAL_PROMPT, GPT_MODEL } = constants;
