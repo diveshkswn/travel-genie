@@ -28,12 +28,15 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
   }, []);
 
   const handleActivityClick = (activityName: string) => {
+
     if (selectedActivities.includes(activityName)) {
       setSelectedActivities(
         selectedActivities.filter((name) => name !== activityName)
       );
     } else {
-      setSelectedActivities([...selectedActivities, activityName]);
+      if (selectedActivities.length < 3) {
+        setSelectedActivities([...selectedActivities, activityName]);
+      }
     }
   };
 
@@ -86,6 +89,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
     >
       <div className="header">
         <h1>Choose Your Travel Style</h1>
+        <h4>Please choose a maximum of three preferences</h4>
         <p>Uncover Your Ideal Travel Style</p>
       </div>
       <StyledContainer>
@@ -98,7 +102,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({ activities }) => {
           />
         ))}
       </StyledContainer>
-      <Button text="Save" handleClick={handleSaveClick} className="save-btn" />
+      <Button text="Save" handleClick={handleSaveClick} className={`save-btn`} />
       {isLoading && <Loader />}
     </ActivityContainer>
   );
