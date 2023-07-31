@@ -93,14 +93,14 @@ export function Discover(props: DiscoverProps) {
     itinerayPropmt?: string,
     useGPT?: boolean
   ) => {
-    const { city = "" } = cardData;
-    const index = recentData.findIndex((item) => item.city === city || itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase()));
+    const { city = "", region = "" } = cardData;
+    const index = recentData.findIndex((item) => item.city === (city || region) || itinerayPropmt?.toLowerCase()?.includes(item?.city?.toLowerCase()));
     let selectedIndex = index === -1 ? recentData.length : index;
     let redirectTo = false;
 
     if (index === -1) {
       setIsLoading(true);
-      const prompt = getPrompt(city, itinerayPropmt, useGPT);
+      const prompt = getPrompt((city || region), itinerayPropmt, useGPT);
 
       const { id, data: itinerayDataResponse } = useGPT
         ? await getData(prompt)
@@ -143,7 +143,7 @@ export function Discover(props: DiscoverProps) {
           itinerayData = newItinerayData;
         }
 
-        const locationData = city
+        const locationData = (city || region)
           ? cardData
           : {
             city: itinerayData?.[0]?.cityName,
@@ -228,7 +228,7 @@ export function Discover(props: DiscoverProps) {
           </div>
         </div>
       ) : (
-        <div className="d-flex content_container card-container flex-column-reverse ms-4">
+        <div className="d-flex content_container card-container flex-column-reverse">
           {recentData?.map((item, index) =>
             renderCard(item, `recent-card-${index}`, false, true)
           )}
