@@ -11,6 +11,7 @@ export const StyledSearch = styled("div")(
     padding: 8px;
     border: none;
     border-radius: 8px;
+    color: ${theme.colors.primaryColor};
     &::placeholder {
       color : ${theme.colors.secondaryColor};
     }

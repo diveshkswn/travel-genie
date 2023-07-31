@@ -69,6 +69,9 @@ function PageLayout({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    const imgUrl = sessionStorage.getItem("imageURL");
+    eventUtil.dispatch("backgroundImgURL", imgUrl);
+
     const asyncFunction = async () => {
       const locationInfo = await fetch(
         "https://api.ipdata.co/?api-key=c52cc586bb4f34411b035540bf6a17ad8009a71a79aabac724bda0f0"

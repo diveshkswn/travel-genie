@@ -14,7 +14,7 @@ export const cityImageArray = [
     "city": "Jaipur",
     "imgUrl": {
       "Morning": "https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/171338560_4795481790478562_1569380279076325030_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=973b4a&_nc_ohc=yMRnrAW8Rt4AX9eqGtC&_nc_ht=scontent.fdel27-5.fna&oh=00_AfAkh21He1nbHMWrbL9XgBlh_XRhog-7IGk-R-GVgyqLfQ&oe=64EB14B7",
-      "Afternoon": "hhttps://www.fabhotels.com/blog/wp-content/uploads/2016/02/amer-fort-jaipur.jpg",
+      "Afternoon": "https://www.fabhotels.com/blog/wp-content/uploads/2016/02/amer-fort-jaipur.jpg",
       "Night": "https://media.gettyimages.com/id/1352251172/photo/crescent-moon-over-the-residential-district-by-the-sea-in-kanagawa-of-japan.jpg?s=2048x2048&w=gi&k=20&c=qrWtjhcM5pTA1_DJIjx8YevJ5AWZzi7kZZ79m7lzAmE=",
       "Cloudy": "https://example.com/images/jaipur_cloudy.jpg",
       "Sunny": "https://example.com/images/jaipur_sunny.jpg",
