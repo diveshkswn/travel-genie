@@ -67,7 +67,7 @@ export function CityHeader(props: CityHeaderProps) {
   }, []);
 
   const weatherCondition = weatherData?.weather?.[0]?.main;
-  const weatherIcons = weatherIcon[weatherCondition.toLowerCase()] || 'https://edge.ixigo.com/st/plan/_next/static/media/01d.74ad193b.svg';
+  const weatherIcons = weatherIcon[weatherCondition?.toLowerCase()] || 'https://edge.ixigo.com/st/plan/_next/static/media/01d.74ad193b.svg';
   return (
     <CityHeaderSection className="HeaderContainer">
       {convertToFahrenheit(weatherData?.main?.temp).toFixed(2)}°C -{" "}
