@@ -18,6 +18,7 @@ import Loader from "@/components/Loader/Loader";
 const { TAB_LIST, ITINERAY_PROMPT } = constants;
 
 export function Discover(props: DiscoverProps) {
+  console.log("Discover");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState(TAB_LIST[0]);
