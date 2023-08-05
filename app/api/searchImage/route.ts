@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { constants } from "@/utils/constants";
 import { searchImage } from "@/utils/helpers";
 export const runtime = "edge";
 
