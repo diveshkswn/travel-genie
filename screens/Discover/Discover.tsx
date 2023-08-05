@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 "use client";
 
 import { memo, useEffect, useState } from "react";
@@ -18,6 +17,7 @@ import Loader from "@/components/Loader/Loader";
 const { TAB_LIST, ITINERAY_PROMPT } = constants;
 
 export function Discover(props: DiscoverProps) {
+  //TODO : Discover
   console.log("Discover");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
